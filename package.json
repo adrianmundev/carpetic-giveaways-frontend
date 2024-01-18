@@ -1,0 +1,26 @@
+{
+  "name": "lottery-dev",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "bootstrap": "^5.2.3",
+    "eslint": "8.29.0",
+    "eslint-config-next": "13.0.6",
+    "next": "13.0.6",
+    "react": "18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-countdown": "^2.3.5",
+    "react-datepicker": "^4.8.0",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.7.1",
+    "react-slick": "^0.29.0",
+    "sass": "^1.56.2",
+    "slick-carousel": "^1.8.1"
+  }
+}
