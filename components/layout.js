@@ -1,7 +1,7 @@
 import Footer from "./footer/Footer";
 import Header from "./header/Header";
-import Login from "./modal/Login";
-import SignUp from "./modal/SignUp";
+import Login from "./modal/login/Login";
+import SignUp from "./modal/sign-up/SignUp";
 import ScrollToTop from "./scrollToTop/ScrollToTop";
 
 const Layout = ({ children }) => {

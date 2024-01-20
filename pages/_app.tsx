@@ -1,11 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import Head from "next/head";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/layout";
 import { AppProvider } from "../context/context";
+import { Provider as ReduxProvider } from "react-redux";
+import { store } from "@/redux/store";
 import "../public/css/line-awesome.min.css";
 import "../public/css/modal-video.scss";
+import { SessionContainer } from "@/components/session-container/SessionContainer";
+import { ToastContainer } from "react-toastify";
+import "../styles/global.css";
 import "../styles/main.sass";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -21,7 +27,7 @@ function MyApp({ Component, pageProps }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Component {...pageProps} />
-      </AppProvider>
+      </AppProvider>,
     );
   }
   return (
@@ -29,9 +35,25 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Rifa - Online Lotto & Lottery Reactjs + Nextjs Template</title>
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <ReduxProvider store={store}>
+        <SessionContainer>
+          <Layout>
+            <ToastContainer
+              position="bottom-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+            />
+            <Component {...pageProps} />
+          </Layout>
+        </SessionContainer>
+      </ReduxProvider>
     </AppProvider>
   );
 }
