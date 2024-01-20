@@ -4,11 +4,14 @@ import { useEffect, useState } from "react";
 import cartData from "../../data/cartData";
 import tag from "/public/images/icon/btn/tag.png";
 import logo from "/public/images/logo.png";
+import { userSelector } from "@/redux/slices/auth/selectors";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [open, setOpen] = useState("");
   const [windowHeight, setWindowHeight] = useState(0);
   const [show, setShow] = useState(false);
+  const user = useSelector(userSelector);
 
   const handleOpen = (e) => {
     if (open !== e.target.text) {
@@ -77,14 +80,25 @@ const Header = () => {
                     <span className="cart__num">{cartData.length}</span>
                   </Link>
                 </div>
-                <a
-                  href="#0"
-                  className="user__btn d-flex align-items-center justify-content-center"
-                  data-bs-toggle="modal"
-                  data-bs-target="#loginModal"
-                >
-                  <i className="las la-user"></i>
-                </a>
+                {!user && (
+                  <a
+                    href="#0"
+                    className="user__btn d-flex align-items-center justify-content-center"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal"
+                  >
+                    <i className="las la-user"></i>
+                  </a>
+                )}
+                {user && (
+                  <Link
+                    href="/user"
+                    className="user__btn d-flex align-items-center justify-content-center"
+                  >
+                    {user?.firstName.charAt(0).toUpperCase()}
+                    {user?.lastName.charAt(0).toUpperCase()}
+                  </Link>
+                )}
               </div>
             </div>
           </div>
