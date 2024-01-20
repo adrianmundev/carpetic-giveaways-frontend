@@ -27,7 +27,7 @@ export const SessionContainer: React.FC<SessionContainerTypeProps> = ({
       .finally(() => {
         dispatch(setInitializing(false));
       });
-  }, []);
+  }, [dispatch]);
 
   if (isInitializing) {
     return (
