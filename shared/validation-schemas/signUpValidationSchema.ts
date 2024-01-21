@@ -59,7 +59,7 @@ export const signUpValidationSchema = z
           );
         },
         {
-          message: "Please add a valid date of birth",
+          message: "Please add a valid date of birth. (Format: dd/mm/yyyy)",
         },
       )
       .refine(isEighteenOrOlder, {
@@ -69,7 +69,7 @@ export const signUpValidationSchema = z
       .string({
         required_error: "Phone is a required field",
       })
-      .min(1, "Last Name is a required field"),
+      .min(1, "Phone is a required field"),
     email: z
       .string({
         required_error: "Email is a required field",

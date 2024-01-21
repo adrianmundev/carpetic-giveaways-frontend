@@ -1,8 +1,16 @@
 import { FaFacebookF, FaGooglePlusG, FaTwitter } from "react-icons/fa";
 import Social from "../../social/Social";
 import { LoginForm } from "@/components/modal/login/components/LoginForm";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Login = () => {
+  const router = useRouter();
+
+  const handleSignUpRedirect = () => {
+    router.push("/sign-up");
+  };
+
   return (
     <div
       className="modal fade"
@@ -29,26 +37,14 @@ const Login = () => {
                 <p className="text-center mt-4">
                   Don&#39;t have an account?{" "}
                   <a
-                    href="#0"
-                    data-bs-toggle="modal"
-                    data-bs-target="#signupModal"
+                    onClick={handleSignUpRedirect}
+                    href="#"
+                    data-bs-dismiss="modal"
                   >
                     {" "}
                     Sign Up Now
                   </a>
                 </p>
-                <div className="divider">
-                  <span>or</span>
-                </div>
-
-                {/* social links here */}
-                <Social
-                  items={[
-                    [FaFacebookF, "/"],
-                    [FaTwitter, "/"],
-                    [FaGooglePlusG, "/"],
-                  ]}
-                />
               </div>
             </div>
           </div>

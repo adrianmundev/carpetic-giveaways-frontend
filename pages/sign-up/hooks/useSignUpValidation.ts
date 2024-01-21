@@ -43,7 +43,7 @@ export const useSignUpValidation = () => {
         timezone: fetchTimeZone(),
       });
       dispatch(setUser(user));
-      router.reload();
+      router.replace("/");
     } catch (error) {
       toast.error(transformError(error).message);
     }

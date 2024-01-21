@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import cartData from "../../data/cartData";
 import tag from "/public/images/icon/btn/tag.png";
-import logo from "/public/images/logo.png";
+import logo from "/public/images/logo.svg";
 import { userSelector } from "@/redux/slices/auth/selectors";
 import { useSelector } from "react-redux";
 
@@ -57,18 +57,6 @@ const Header = () => {
                   <i className="las la-phone-volume"></i>
                   Customer Support
                 </a>
-                <div className="language">
-                  <i className="las la-globe-europe"></i>
-                  <div className="select">
-                    <select className="border-0">
-                      <option>En</option>
-                      <option>Rus</option>
-                      <option>Bn</option>
-                      <option>Hp</option>
-                      <option>Frn</option>
-                    </select>
-                  </div>
-                </div>
               </div>
             </div>
             <div className="col-sm-6">
@@ -95,8 +83,8 @@ const Header = () => {
                     href="/user"
                     className="user__btn d-flex align-items-center justify-content-center"
                   >
-                    {user?.firstName.charAt(0).toUpperCase()}
-                    {user?.lastName.charAt(0).toUpperCase()}
+                    {user?.firstName?.charAt(0).toUpperCase()}
+                    {user?.lastName?.charAt(0).toUpperCase()}
                   </Link>
                 )}
               </div>
@@ -109,9 +97,6 @@ const Header = () => {
           <nav className="navbar navbar-expand-xl p-0 align-items-center">
             <Link href="/" className="site-logo site-title">
               <Image src={logo} alt="logo" />
-              <span className="logo-icon">
-                <i className="flaticon-fire"></i>
-              </span>
             </Link>
             <button
               className="navbar-toggler ms-auto"

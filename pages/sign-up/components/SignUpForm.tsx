@@ -1,6 +1,6 @@
 import React from "react";
-import { useSignUpValidation } from "components/modal/sign-up/hooks";
-import { ErrorHelperMessage } from "shared/components";
+import { useSignUpValidation } from "@/pages/sign-up/hooks";
+import { Checkbox, ErrorHelperMessage } from "shared/components";
 import { isErrorMessage } from "shared/utils";
 
 export const SignUpForm = () => {
@@ -122,17 +122,15 @@ export const SignUpForm = () => {
       </div>
       <div className="d-flex flex-wrap mt-2">
         <div className="custom-checkbox">
-          <input
-            type="checkbox"
+          <Checkbox
+            label="I Agree to"
             name="acceptTerms"
             id="acceptTerms"
             {...register("acceptTerms")}
             onChange={handleAcceptTermsConditions}
           />
-          <label htmlFor="acceptTerms">I agree to the</label>
-          <span className="checkbox"></span>
         </div>
-        <a href="#0" className="link ml-1">
+        <a href="#0" className="link ml-1 tw-ml-1 mt-1">
           Terms, Privacy Policy and Fees
         </a>
       </div>

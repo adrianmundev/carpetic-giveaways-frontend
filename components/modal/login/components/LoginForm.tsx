@@ -34,7 +34,7 @@ export const LoginForm = () => {
         <ErrorHelperMessage message={isErrorMessage("password", errors)} />
       </div>
       <div className="d-flex flex-wrap justify-content-between mt-2">
-        <div className="custom-checkbox">
+        {/* <div className="custom-checkbox">
           <input
             type="checkbox"
             name="id-1"
@@ -44,7 +44,7 @@ export const LoginForm = () => {
           />
           <label htmlFor="id-1">Remember Password</label>
           <span className="checkbox"></span>
-        </div>
+        </div> */}
         {/* <a href="#0" className="link">
           Forgot Password?
         </a> */}
