@@ -1,5 +1,5 @@
 import React from "react";
-import { useSignUpValidation } from "@/pages/sign-up/hooks";
+import { useSignUpValidation } from "@/components/sign-up/hooks";
 import { Checkbox, ErrorHelperMessage } from "shared/components";
 import { isErrorMessage } from "shared/utils";
 
