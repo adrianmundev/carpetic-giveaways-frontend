@@ -51,9 +51,6 @@ export const signUpValidationSchema = z
       })
       .refine(
         (value) => {
-          console.log(
-            /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(value),
-          );
           return /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/\d{4}$/.test(
             value,
           );
@@ -65,11 +62,13 @@ export const signUpValidationSchema = z
       .refine(isEighteenOrOlder, {
         message: "Our competitions are restricted to those aged over 18",
       }),
+    phoneDialCode: z.string(),
+    phoneCountryCode: z.string(),
     phoneNumber: z
       .string({
-        required_error: "Phone is a required field",
+        required_error: "If you win we will need to call you",
       })
-      .min(1, "Phone is a required field"),
+      .min(1, "If you win we will need to call you"),
     email: z
       .string({
         required_error: "Email is a required field",

@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.phone-input {
+  width: 100% !important;
+  color: white !important;
+  background-color: transparent !important;
+  padding: 1px 0 0 48px !important;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid #766bcb !important;
+}
+
+.phone-dropdown {
+  background: #4e40b9 !important;
+  color: #c4cbf9 !important;
+}
+
+.phone-dropdown .dial-code {
+  color: #c4cbf9 !important;
+}

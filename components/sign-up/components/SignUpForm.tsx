@@ -1,16 +1,30 @@
 import React from "react";
 import { useSignUpValidation } from "@/components/sign-up/hooks";
-import { Checkbox, ErrorHelperMessage } from "shared/components";
+import {
+  Checkbox,
+  ErrorHelperMessage,
+  PhoneNumberInput,
+} from "shared/components";
 import { isErrorMessage } from "shared/utils";
 
 export const SignUpForm = () => {
   const {
     register,
     errors,
+    control,
     isSubmitting,
     onSubmit,
     handleAcceptTermsConditions,
+    handleBirthdayChange,
+    handlePhoneNumberChange,
+    showConfirmPasswordLabel,
+    showPasswordLabel,
+    handleShowPassword,
+    showConfirmPasswordType,
+    showPasswordType,
   } = useSignUpValidation();
+
+  console.log(errors);
 
   return (
     <form autoComplete="off" onSubmit={onSubmit}>
@@ -76,6 +90,7 @@ export const SignUpForm = () => {
           id="dob"
           placeholder="dd/mm/yyyy"
           {...register("dob")}
+          onChange={handleBirthdayChange}
         />
         <ErrorHelperMessage message={isErrorMessage("dob", errors)} />
       </div>
@@ -83,39 +98,49 @@ export const SignUpForm = () => {
         <label>
           Phone <sup>*</sup>
         </label>
-        <input
-          type="text"
-          name="phoneNumber"
+        <PhoneNumberInput
           id="phoneNumber"
-          placeholder="Enter your phone number"
-          {...register("phoneNumber")}
+          control={control}
+          handleOnChange={handlePhoneNumberChange}
         />
         <ErrorHelperMessage message={isErrorMessage("phoneNumber", errors)} />
       </div>
-      <div className="form-group">
+      <div className="form-group tw-relative">
         <label>
           password <sup>*</sup>
         </label>
         <input
-          type="password"
+          type={showPasswordType}
           name="password"
           id="password"
           placeholder="password"
           {...register("password")}
         />
+        <span
+          className="tw-absolute tw-right-5 tw-top-10 tw-cursor-pointer tw-text-lg tw-text-BrightTurquoise"
+          onClick={handleShowPassword("showPassword")}
+        >
+          {showPasswordLabel}
+        </span>
         <ErrorHelperMessage message={isErrorMessage("password", errors)} />
       </div>
-      <div className="form-group">
+      <div className="form-group tw-relative">
         <label>
           confirm password <sup>*</sup>
         </label>
         <input
-          type="password"
+          type={showConfirmPasswordType}
           name="confirmPassword"
           id="confirmPassword"
           placeholder="Confirm Password"
           {...register("confirmPassword")}
         />
+        <span
+          className="tw-absolute tw-right-5 tw-top-10 tw-cursor-pointer tw-text-lg tw-text-BrightTurquoise"
+          onClick={handleShowPassword("showConfirmPassword")}
+        >
+          {showConfirmPasswordLabel}
+        </span>
         <ErrorHelperMessage
           message={isErrorMessage("confirmPassword", errors)}
         />

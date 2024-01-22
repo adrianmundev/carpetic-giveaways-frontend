@@ -7,7 +7,11 @@ module.exports = {
     "./shared/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        BrightTurquoise: "#00FFB8",
+      },
+    },
   },
   plugins: [],
 };
