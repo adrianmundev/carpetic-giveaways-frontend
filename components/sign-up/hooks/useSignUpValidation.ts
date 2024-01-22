@@ -33,8 +33,8 @@ export const useSignUpValidation = () => {
     handleSubmit,
   } = useForm<SignUpInputType>({
     resolver: zodResolver(signUpValidationSchema),
-    mode: "all",
-    reValidateMode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -70,27 +70,25 @@ export const useSignUpValidation = () => {
 
   const handleBirthdayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     let value = event.target.value;
-    if (dob.lastIndexOf("/") !== 2 && value.length === 2) {
-      // date slash
-      value += "/";
-    }
+    if (/^[0-9\/]+$/.test(value) && value.length <= 10) {
+      if (dob.lastIndexOf("/") !== 2 && value.length === 2) {
+        // date slash
+        value += "/";
+      }
 
-    if (dob.lastIndexOf("/") !== 5 && value.length === 5) {
-      // month slash
-      value += "/";
+      if (dob.lastIndexOf("/") !== 5 && value.length === 5) {
+        // month slash
+        value += "/";
+      }
+      setValue("dob", value);
     }
-    setValue("dob", value);
   };
 
-  const handleShowPassword =
-    (label: "showPassword" | "showConfirmPassword") => () => {
-      if (label === "showPassword") {
-        setShowPassword((prev) => !prev);
-      }
-      if (label === "showConfirmPassword") {
-        setShowConfirmPassword((prev) => !prev);
-      }
-    };
+  const handleShowPassword = (label: "showPassword") => () => {
+    if (label === "showPassword") {
+      setShowPassword((prev) => !prev);
+    }
+  };
 
   const handlePhoneNumberChange = (value: string, inputData: CountryData) => {
     setValue("phoneDialCode", inputData.dialCode);
@@ -113,13 +111,12 @@ export const useSignUpValidation = () => {
     control,
     register,
     onSubmit: handleSubmit(onSubmit),
+    dob,
     handleAcceptTermsConditions,
     handleBirthdayChange,
     handleShowPassword,
     handlePhoneNumberChange,
     showPasswordLabel: showPassword ? "Hide" : "Show",
-    showConfirmPasswordLabel: showConfirmPassword ? "Hide" : "Show",
     showPasswordType: showPassword ? "text" : "password",
-    showConfirmPasswordType: showConfirmPassword ? "text" : "password",
   };
 };

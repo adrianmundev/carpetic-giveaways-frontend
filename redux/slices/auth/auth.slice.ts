@@ -28,6 +28,11 @@ export const authSlice = createSlice({
       state.isAuthenticated = true;
       state.user = payload;
     },
+    updateUser: (state, { payload }) => {
+      const user = { ...state.user };
+      Object.assign(user, payload);
+      state.user = user;
+    },
     setInitializing: (state, { payload }) => {
       state.isInitializing = payload;
     },
@@ -40,5 +45,10 @@ export const authSlice = createSlice({
 
 export const authSliceReducer = authSlice.reducer;
 
-export const { authResetError, logoutUser, setInitializing, setUser } =
-  authSlice.actions;
+export const {
+  authResetError,
+  logoutUser,
+  setInitializing,
+  setUser,
+  updateUser,
+} = authSlice.actions;

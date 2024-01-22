@@ -6,3 +6,11 @@ export {
   type SignInInputType,
   signInValidationSchema,
 } from "./signInValidationSchema";
+export {
+  type EditEmailAddressInputType,
+  editEmailAddressValidationSchema,
+} from "./editEmailAddressSchema";
+export {
+  type EditPhoneNumberInput,
+  editPhoneNumberSchema,
+} from "./editPhoneNumberSchema";

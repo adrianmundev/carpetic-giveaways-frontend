@@ -14,17 +14,14 @@ export const SignUpForm = () => {
     control,
     isSubmitting,
     onSubmit,
+    dob,
     handleAcceptTermsConditions,
     handleBirthdayChange,
     handlePhoneNumberChange,
-    showConfirmPasswordLabel,
     showPasswordLabel,
     handleShowPassword,
-    showConfirmPasswordType,
     showPasswordType,
   } = useSignUpValidation();
-
-  console.log(errors);
 
   return (
     <form autoComplete="off" onSubmit={onSubmit}>
@@ -90,6 +87,7 @@ export const SignUpForm = () => {
           id="dob"
           placeholder="dd/mm/yyyy"
           {...register("dob")}
+          value={dob}
           onChange={handleBirthdayChange}
         />
         <ErrorHelperMessage message={isErrorMessage("dob", errors)} />
@@ -123,27 +121,6 @@ export const SignUpForm = () => {
           {showPasswordLabel}
         </span>
         <ErrorHelperMessage message={isErrorMessage("password", errors)} />
-      </div>
-      <div className="form-group tw-relative">
-        <label>
-          confirm password <sup>*</sup>
-        </label>
-        <input
-          type={showConfirmPasswordType}
-          name="confirmPassword"
-          id="confirmPassword"
-          placeholder="Confirm Password"
-          {...register("confirmPassword")}
-        />
-        <span
-          className="tw-absolute tw-right-5 tw-top-10 tw-cursor-pointer tw-text-lg tw-text-BrightTurquoise"
-          onClick={handleShowPassword("showConfirmPassword")}
-        >
-          {showConfirmPasswordLabel}
-        </span>
-        <ErrorHelperMessage
-          message={isErrorMessage("confirmPassword", errors)}
-        />
       </div>
       <div className="d-flex flex-wrap mt-2">
         <div className="custom-checkbox">

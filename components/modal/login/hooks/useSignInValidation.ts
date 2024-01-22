@@ -22,8 +22,8 @@ export const useSignInValidation = () => {
     handleSubmit,
   } = useForm<SignInInputType>({
     resolver: zodResolver(signInValidationSchema),
-    mode: "all",
-    reValidateMode: "onChange",
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
     defaultValues: {
       email: "",
       password: "",

@@ -32,10 +32,8 @@ export const PhoneNumberInput: React.FC<PhoneInputProps> = ({
             country={"ro"}
             enableLongNumbers={false}
             inputClass="phone-input"
-            dropdownStyle={{
-              backgroundColor: "transparent !important",
-            }}
             dropdownClass="phone-dropdown"
+            buttonClass="phone-button"
             placeholder="Enter your phone number"
             enableSearch={false}
             countryCodeEditable={false}

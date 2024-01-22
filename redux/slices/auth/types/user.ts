@@ -5,7 +5,11 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
+  dob: string;
   phoneNumber: string;
+  phoneDialCode: string;
+  phoneCountryCode: string;
+  addressLine1: string;
   role: UserRoleEnum;
   createdAt: Date;
   updatedAt: Date;

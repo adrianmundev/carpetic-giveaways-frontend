@@ -1,33 +1,5 @@
 import { z } from "zod";
-const dayjs = require("dayjs");
-
-function isEighteenOrOlder(birthdate: string) {
-  const year = birthdate.split("/")[2];
-  const month = birthdate.split("/")[1];
-  const day = birthdate.split("/")[0];
-
-  // Parse the birthdate string to a Date object
-  const birthDateObj = dayjs(year, month, day);
-
-  if (!birthDateObj.isValid()) {
-    return false;
-  }
-
-  // Calculate the current date
-  const currentDate = dayjs();
-
-  // Calculate the difference in years
-  const age = currentDate.year() - birthDateObj.year();
-
-  // Check if the birthday has occurred for this year
-  const hasBirthdayOccurred =
-    currentDate.month() > birthDateObj.month() ||
-    (currentDate.month() === birthDateObj.month() &&
-      currentDate.date() >= birthDateObj.date());
-
-  // Check if the person is 18 years or older
-  return age > 18 || (age === 18 && hasBirthdayOccurred);
-}
+import { isEighteenOrOlder } from "@/shared/utils";
 
 export const signUpValidationSchema = z
   .object({
@@ -83,16 +55,12 @@ export const signUpValidationSchema = z
       .string({
         required_error: "Password is a required field",
       })
-      .min(8, "Password must be between 8 and 12 characters"),
-    confirmPassword: z
-      .string({
-        required_error: "Confirm password is a required field",
-      })
-      .min(8, "Password must be between 8 and 12 characters"),
+      .min(6, "Password must be between 6 and 12 characters")
+      .max(12),
   })
-  .refine(({ password, confirmPassword }) => password === confirmPassword, {
-    message: "Passwords must be matched",
-    path: ["confirmPassword"],
+  .refine(({ email, confirmEmail }) => email === confirmEmail, {
+    message: "Emails must be matched",
+    path: ["confirmEmail"],
   });
 
 export type SignUpInputType = z.infer<typeof signUpValidationSchema>;

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #c4cbf9;
+}
+
 .phone-input {
   width: 100% !important;
   color: white !important;
@@ -14,9 +18,20 @@
 
 .phone-dropdown {
   background: #4e40b9 !important;
-  color: #c4cbf9 !important;
+  color: var(--color-primary) !important;
 }
 
 .phone-dropdown .dial-code {
-  color: #c4cbf9 !important;
+  color: var(--color-primary) !important;
+}
+
+@media only screen and (max-width: 640px) {
+  .phone-button {
+    background-color: transparent !important;
+    border: none !important;
+  }
+}
+
+.form-color {
+  color: var(--color-primary) !important;
 }

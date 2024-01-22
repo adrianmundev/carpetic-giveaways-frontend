@@ -1,0 +1,1 @@
+export { useEditPersonalDetails } from "./useEditPersonalDetails";
