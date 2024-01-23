@@ -43,3 +43,11 @@
 .form-color {
   color: var(--color-primary) !important;
 }
+
+.user-avatar {
+  width: 160px !important;
+  height: 160px !important;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

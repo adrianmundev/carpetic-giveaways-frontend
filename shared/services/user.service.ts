@@ -12,7 +12,15 @@ type UpdateUserPayload = EditPhoneNumberInput &
 class UserService {
   public async update(id: string, body: Partial<UpdateUserPayload>) {
     const response = await apiClient.patch(`/user/${id}`, body);
-    console.log(response.data);
+    return response.data;
+  }
+
+  public async uploadProfilePicture(body: FormData) {
+    const response = await apiClient.post(`/user/avatar`, body, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response.data;
   }
 }
