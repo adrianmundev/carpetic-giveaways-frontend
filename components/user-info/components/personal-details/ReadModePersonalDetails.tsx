@@ -1,5 +1,4 @@
 import { User } from "@/redux/slices/auth/types";
-import { CircleLoader } from "@/shared/components/circle-loader/CircleLoader";
 import React from "react";
 
 type Props = {
@@ -7,10 +6,6 @@ type Props = {
 };
 
 export const ReadModePersonalDetails: React.FC<Props> = ({ user }) => {
-  if (!user) {
-    return <CircleLoader />;
-  }
-
   return (
     <ul className="user-info-card__list">
       <li>

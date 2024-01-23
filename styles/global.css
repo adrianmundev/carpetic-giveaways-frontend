@@ -30,6 +30,14 @@
     background-color: transparent !important;
     border: none !important;
   }
+
+  .phone-button .selected-flag {
+    background-color: transparent !important;
+    border: none !important;
+  }
+  .phone-button .arrow {
+    border-top: 4px solid var(--color-primary) !important;
+  }
 }
 
 .form-color {

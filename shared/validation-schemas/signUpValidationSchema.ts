@@ -40,7 +40,10 @@ export const signUpValidationSchema = z
       .string({
         required_error: "If you win we will need to call you",
       })
-      .min(1, "If you win we will need to call you"),
+      .min(
+        1,
+        "Please add a valid phone number, If you win we will need to call you",
+      ),
     email: z
       .string({
         required_error: "Email is a required field",

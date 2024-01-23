@@ -19,7 +19,6 @@ import {
 
 export const useSignUpValidation = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
   const {
@@ -56,7 +55,7 @@ export const useSignUpValidation = () => {
         timezone: fetchTimeZone(),
       });
       dispatch(setUser(user));
-      router.replace("/");
+      window.location.href = "/";
     } catch (error) {
       toast.error(transformError(error).message);
     }

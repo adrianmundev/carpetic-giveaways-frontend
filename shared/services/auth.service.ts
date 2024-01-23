@@ -1,5 +1,8 @@
 import { apiClient } from "@/shared/services/api.service";
-import { SignUpInputType } from "@/shared/validation-schemas";
+import {
+  EditPasswordInput,
+  SignUpInputType,
+} from "@/shared/validation-schemas";
 
 type RegisterBodyType = {
   timezone: string;
@@ -22,6 +25,11 @@ class AuthService {
 
   public async fetchUserSession() {
     const response = await apiClient.get("/auth/session");
+    return response.data;
+  }
+
+  public async changePassword(body: EditPasswordInput) {
+    const response = await apiClient.patch("/auth/change-password", body);
     return response.data;
   }
 }

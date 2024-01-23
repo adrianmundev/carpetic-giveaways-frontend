@@ -12,7 +12,9 @@ type UserFieldProps = {
     | "dob"
     | "addressLine1"
     | "email"
-    | "phoneNumber";
+    | "phoneNumber"
+    | "currentPassword"
+    | "newPassword";
   control: Control<FieldValues, any>;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errors: FieldErrors<FieldValues>;

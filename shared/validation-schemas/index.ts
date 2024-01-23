@@ -14,3 +14,7 @@ export {
   type EditPhoneNumberInput,
   editPhoneNumberSchema,
 } from "./editPhoneNumberSchema";
+export {
+  type EditPasswordInput,
+  editPasswordSchema,
+} from "./editPasswordSchema";

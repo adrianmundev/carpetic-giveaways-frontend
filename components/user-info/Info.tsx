@@ -1,6 +1,7 @@
 import { FaRegEdit } from "react-icons/fa";
 import {
   EmailAddress,
+  Password,
   PersonalDetails,
   PhoneNumber,
 } from "@/components/user-info/components";
@@ -33,20 +34,7 @@ const Info = () => {
       </div> */}
       <EmailAddress />
       <PhoneNumber />
-      <div className="user-info-card">
-        <div className="user-info-card__header">
-          <h3 className="user-info-card__title">Security</h3>
-          <button type="button" className="d-flex align-items-start gap-1">
-            <FaRegEdit className="fs-4" /> Edit
-          </button>
-        </div>
-        <ul className="user-info-card__list">
-          <li>
-            <span className="caption">Password</span>
-            <span className="value user-password">***************</span>
-          </li>
-        </ul>
-      </div>
+      <Password />
     </div>
   );
 };
