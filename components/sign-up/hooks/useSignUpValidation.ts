@@ -20,7 +20,6 @@ import {
 export const useSignUpValidation = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const router = useRouter();
   const {
     register,
     control,

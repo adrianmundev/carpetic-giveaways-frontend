@@ -1,7 +1,4 @@
-import { FaFacebookF, FaGooglePlusG, FaTwitter } from "react-icons/fa";
-import Social from "../../social/Social";
 import { LoginForm } from "@/components/modal/login/components/LoginForm";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 const Login = () => {

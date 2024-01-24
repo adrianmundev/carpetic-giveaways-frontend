@@ -2,6 +2,7 @@ import { setUser } from "@/redux/slices/auth/auth.slice";
 import { authService } from "@/shared/services";
 import { transformError } from "@/shared/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -12,9 +13,9 @@ import {
 
 export const useSignInValidation = () => {
   const dispatch = useDispatch();
+  const router = useRouter();
   const {
     register,
-    setValue,
     formState: { errors, touchedFields, isSubmitting },
     handleSubmit,
   } = useForm<SignInInputType>({
@@ -39,11 +40,16 @@ export const useSignInValidation = () => {
     }
   };
 
+  const handleForgotPasswordRedirect = () => {
+    router.push("/forgot-password");
+  };
+
   return {
     touchedFields,
     isSubmitting,
     errors,
     register,
+    handleForgotPasswordRedirect,
     onSubmit: handleSubmit(onSubmit),
   };
 };

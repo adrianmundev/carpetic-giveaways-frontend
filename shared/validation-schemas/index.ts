@@ -18,3 +18,11 @@ export {
   type EditPasswordInput,
   editPasswordSchema,
 } from "./editPasswordSchema";
+export {
+  type ForgotPasswordType,
+  forgotPasswordSchema,
+} from "./forgotPasswordSchem";
+export {
+  type ResetPasswordType,
+  resetPasswordSchema,
+} from "./resetPasswordSchema";

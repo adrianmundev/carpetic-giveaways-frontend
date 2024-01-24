@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -78,7 +79,19 @@ const Header = () => {
                     <i className="las la-user"></i>
                   </a>
                 )}
-                {user && (
+                {user?.avatar ? (
+                  <Link href="/user" className="tw-ml-9">
+                    <img
+                      src={user.avatar}
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        borderRadius: "50%",
+                      }}
+                      alt="profile picture"
+                    />
+                  </Link>
+                ) : (
                   <Link
                     href="/user"
                     className="user__btn d-flex align-items-center justify-content-center"

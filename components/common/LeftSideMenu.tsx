@@ -66,7 +66,7 @@ const LeftSideMenu = () => {
               <label htmlFor="imageUpload"></label>
             </div>
 
-            {user.avatar ? (
+            {user?.avatar ? (
               <div
                 style={{ backgroundImage: `url(${user.avatar})` }}
                 className="user-avatar"
