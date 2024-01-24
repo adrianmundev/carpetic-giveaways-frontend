@@ -79,7 +79,7 @@ const Header = () => {
                     <i className="las la-user"></i>
                   </a>
                 )}
-                {user?.avatar ? (
+                {user?.avatar && (
                   <Link href="/user" className="tw-ml-9">
                     <img
                       src={user.avatar}
@@ -91,14 +91,15 @@ const Header = () => {
                       alt="profile picture"
                     />
                   </Link>
-                ) : (
+                )}
+                {user && !user.avatar && (
                   <Link
-                    href="/user"
-                    className="user__btn d-flex align-items-center justify-content-center"
-                  >
-                    {user?.firstName?.charAt(0).toUpperCase()}
-                    {user?.lastName?.charAt(0).toUpperCase()}
-                  </Link>
+                  href="/user"
+                  className="user__btn d-flex align-items-center justify-content-center"
+                >
+                  {user?.firstName?.charAt(0).toUpperCase()}
+                  {user?.lastName?.charAt(0).toUpperCase()}
+                </Link>
                 )}
               </div>
             </div>
