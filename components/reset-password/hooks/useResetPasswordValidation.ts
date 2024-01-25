@@ -1,6 +1,7 @@
 import { authService } from "@/shared/services";
 import { transformError } from "@/shared/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
@@ -13,7 +14,9 @@ import {
 export const useResetPasswordValidation = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const dispatch = useDispatch();
+  const [isUpdated, setIsUpdated] = useState(false);
+  const router = useRouter();
+
   const {
     register,
     formState: { errors, isSubmitting },
@@ -27,9 +30,12 @@ export const useResetPasswordValidation = () => {
       password: "",
     },
   });
+  const token = router.query.token as string;
 
   const onSubmit = async (values: ResetPasswordType) => {
     try {
+      const isUpdated = await authService.resetPassword(values, token);
+      setIsUpdated(isUpdated as boolean);
     } catch (error) {
       toast.error(transformError(error).message);
     }
@@ -50,6 +56,7 @@ export const useResetPasswordValidation = () => {
     errors,
     register,
     onSubmit: handleSubmit(onSubmit),
+    isUpdated,
     handleShowPassword,
     showPasswordLabel: showPassword ? "Hide" : "Show",
     showPasswordType: showPassword ? "text" : "password",

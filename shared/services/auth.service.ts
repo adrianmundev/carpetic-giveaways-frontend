@@ -2,6 +2,7 @@ import { apiClient } from "@/shared/services/api.service";
 import {
   EditPasswordInput,
   ForgotPasswordType,
+  ResetPasswordType,
   SignUpInputType,
 } from "@/shared/validation-schemas";
 
@@ -36,6 +37,13 @@ class AuthService {
 
   public async forgotPassword(body: ForgotPasswordType) {
     const response = await apiClient.post("/auth/forgot-password", body);
+    return response.data;
+  }
+  public async resetPassword(body: ResetPasswordType, token: string) {
+    const response = await apiClient.patch(
+      `/auth/reset-password/${token}`,
+      body,
+    );
     return response.data;
   }
 }

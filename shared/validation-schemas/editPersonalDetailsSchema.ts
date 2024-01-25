@@ -12,7 +12,12 @@ export const editPersonalDetailsSchema = z.object({
       required_error: "Last Name is a required field",
     })
     .min(1, "Last Name is a required field"),
+  country: z.string().optional(),
+  company: z.string().optional(),
+  city: z.string().optional(),
+  postalCode: z.string().optional(),
   addressLine1: z.string().optional(),
+  addressLine2: z.string().optional(),
   dob: z
     .string({
       required_error: "date birth is a required field",

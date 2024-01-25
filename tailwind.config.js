@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       colors: {
         BrightTurquoise: "#00FFB8",
+        SelectiveYellow: "#ffb200",
       },
     },
   },

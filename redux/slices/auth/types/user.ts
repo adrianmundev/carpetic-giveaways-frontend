@@ -10,7 +10,12 @@ export type User = {
   phoneNumber: string;
   phoneDialCode: string;
   phoneCountryCode: string;
+  country: string;
+  city: string;
+  company: string;
   addressLine1: string;
+  addressLine2: string;
+  postalCode: string;
   role: UserRoleEnum;
   createdAt: Date;
   updatedAt: Date;

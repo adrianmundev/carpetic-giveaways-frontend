@@ -14,10 +14,16 @@ type UserFieldProps = {
     | "email"
     | "phoneNumber"
     | "currentPassword"
-    | "newPassword";
+    | "newPassword"
+    | "company"
+    | "addressLine2"
+    | "postalCode"
+    | "city";
   control: Control<FieldValues, any>;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   errors: FieldErrors<FieldValues>;
+  disabled?: boolean;
+  children?: React.ReactNode;
 };
 
 export const UserField: React.FC<UserFieldProps> = ({
@@ -27,6 +33,8 @@ export const UserField: React.FC<UserFieldProps> = ({
   inputType,
   onChange,
   errors,
+  disabled = false,
+  children,
 }) => {
   return (
     <div className="tw-flex tw-items-center tw-flex-wrap md:tw-flex-nowrap">
@@ -42,6 +50,7 @@ export const UserField: React.FC<UserFieldProps> = ({
             return (
               <input
                 className="form-control form-color"
+                disabled={disabled}
                 type={inputType}
                 name={name}
                 id={name}
@@ -52,6 +61,7 @@ export const UserField: React.FC<UserFieldProps> = ({
             );
           }}
         />
+        {disabled && <>{children}</>}
         <ErrorHelperMessage message={isErrorMessage(name, errors)} />
       </div>
     </div>

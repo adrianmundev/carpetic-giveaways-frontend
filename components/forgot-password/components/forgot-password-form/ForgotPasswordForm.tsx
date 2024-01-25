@@ -5,12 +5,10 @@ import { useForgotPasswordValidation } from "@/components/forgot-password/hooks"
 import { ForgotPasswordMessage } from "../forgot-password-message/ForgotPasswordMessage";
 
 export const ForgotPasswordForm = () => {
-  const { register, errors, isSubmitting, onSubmit } =
+  const { register, errors, isSubmitting, onSubmit, isSendEmail } =
     useForgotPasswordValidation();
 
-  const isSent = true;
-
-  if (isSent) {
+  if (isSendEmail) {
     return <ForgotPasswordMessage />;
   }
 

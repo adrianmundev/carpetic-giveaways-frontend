@@ -28,6 +28,12 @@ export const useEditPersonalDetails = (closeEditMode: () => void) => {
       firstName: user?.firstName || "",
       lastName: user?.lastName || "",
       dob: user?.dob || "",
+      addressLine1: user?.addressLine1 || "",
+      addressLine2: user?.addressLine2 || "",
+      country: user?.country || "",
+      city: user?.city || "",
+      company: user?.company || "",
+      postalCode: user?.postalCode || "",
     },
   });
 

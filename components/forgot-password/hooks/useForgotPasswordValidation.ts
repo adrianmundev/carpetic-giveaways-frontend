@@ -1,13 +1,16 @@
+import { authService } from "@/shared/services";
 import { transformError } from "@/shared/utils";
 import {
   ForgotPasswordType,
   forgotPasswordSchema,
 } from "@/shared/validation-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export const useForgotPasswordValidation = () => {
+  const [isSendEmail, setIsSentEmail] = useState(false);
   const {
     register,
     formState: { errors, touchedFields, isSubmitting },
@@ -23,7 +26,8 @@ export const useForgotPasswordValidation = () => {
 
   const onSubmit = async (values: ForgotPasswordType) => {
     try {
-      window.location.href = "/";
+      const isSendEmail = await authService.forgotPassword(values);
+      setIsSentEmail(isSendEmail as boolean);
     } catch (error) {
       toast.error(transformError(error).message);
     }
@@ -34,6 +38,7 @@ export const useForgotPasswordValidation = () => {
     isSubmitting,
     errors,
     register,
+    isSendEmail,
     onSubmit: handleSubmit(onSubmit),
   };
 };

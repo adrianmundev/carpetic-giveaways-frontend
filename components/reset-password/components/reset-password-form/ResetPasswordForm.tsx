@@ -2,6 +2,7 @@ import React from "react";
 import { ErrorHelperMessage } from "shared/components";
 import { isErrorMessage } from "shared/utils";
 import { useResetPasswordValidation } from "@/components/reset-password/hooks";
+import { ResetPasswordMessage } from "@/components/reset-password/components";
 
 export const ResetPasswordForm = () => {
   const {
@@ -14,7 +15,12 @@ export const ResetPasswordForm = () => {
     showConfirmPasswordType,
     showPasswordLabel,
     showPasswordType,
+    isUpdated,
   } = useResetPasswordValidation();
+
+  if (isUpdated) {
+    return <ResetPasswordMessage />;
+  }
 
   return (
     <div className="tw-container tw-max-w-3xl tw-mx-auto">

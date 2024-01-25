@@ -19,8 +19,25 @@ export const ReadModePersonalDetails: React.FC<Props> = ({ user }) => {
         <span className="value">{user?.dob}</span>
       </li>
       <li>
+        <span className="caption">Country</span>
+        <span className="value">{user?.country || "N/A"}</span>
+      </li>
+      <li>
+        <span className="caption">Company</span>
+        <span className="value">{user?.company || "N/A"}</span>
+      </li>
+      <li>
         <span className="caption">Address</span>
-        <span className="value">{user?.addressLine1 || "N/A"}</span>
+        <span className="value">
+          {[
+            user?.addressLine1,
+            user?.addressLine2,
+            user?.city,
+            user?.postalCode,
+          ]
+            .filter(Boolean)
+            ?.join(",") || "N/A"}
+        </span>
       </li>
     </ul>
   );
