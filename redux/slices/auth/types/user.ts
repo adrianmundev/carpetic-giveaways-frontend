@@ -2,6 +2,7 @@ import { UserRoleEnum } from "@/redux/slices/auth/enums";
 
 export type User = {
   id: string;
+  userId: number;
   firstName: string;
   lastName: string;
   avatar: string;

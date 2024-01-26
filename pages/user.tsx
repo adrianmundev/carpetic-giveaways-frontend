@@ -1,7 +1,8 @@
+import { withAuth } from "@/shared/hocs";
 import LeftSideMenu from "../components/common/LeftSideMenu";
-import Info from "../components/user-info/Info";
+import RightSide from "../components/user/RightSide";
 
-const UserInfo = () => {
+const User = withAuth()(() => {
   return (
     <>
       <div className="inner-hero-section style--five"></div>
@@ -9,16 +10,16 @@ const UserInfo = () => {
       <div className="mt-minus-150 pb-120">
         <div className="container">
           <div className="row">
-            {/* TODO: suer info */}
+            {/* left side menu */}
             <LeftSideMenu />
 
-            {/* Personal details */}
-            <Info />
+            {/* Right side  */}
+            <RightSide />
           </div>
         </div>
       </div>
     </>
   );
-};
+});
 
-export default UserInfo;
+export default User;

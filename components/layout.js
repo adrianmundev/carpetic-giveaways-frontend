@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       {/* Header section */}
       <Header />
 
-      {children}
+      <div className="tw-grid tw-min-h-[calc(100vh-70px)]">{children}</div>
 
       {/* Footer section */}
       <Footer />

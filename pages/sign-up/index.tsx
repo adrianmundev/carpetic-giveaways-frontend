@@ -1,7 +1,8 @@
 import { SignUpForm } from "@/components/sign-up/components/SignUpForm";
+import { withAuth } from "@/shared/hocs";
 import React from "react";
 
-const SignUpPage = () => {
+const SignUpPage = withAuth({ redirectIfAuthenticated: true })(() => {
   return (
     <section className="inner-hero-section style--four">
       <div className="tw-container tw-max-w-3xl tw-mx-auto">
@@ -21,6 +22,6 @@ const SignUpPage = () => {
       </div>
     </section>
   );
-};
+});
 
 export default SignUpPage;

@@ -94,12 +94,12 @@ const Header = () => {
                 )}
                 {user && !user.avatar && (
                   <Link
-                  href="/user"
-                  className="user__btn d-flex align-items-center justify-content-center"
-                >
-                  {user?.firstName?.charAt(0).toUpperCase()}
-                  {user?.lastName?.charAt(0).toUpperCase()}
-                </Link>
+                    href="/user"
+                    className="user__btn d-flex align-items-center justify-content-center"
+                  >
+                    {user?.firstName?.charAt(0).toUpperCase()}
+                    {user?.lastName?.charAt(0).toUpperCase()}
+                  </Link>
                 )}
               </div>
             </div>

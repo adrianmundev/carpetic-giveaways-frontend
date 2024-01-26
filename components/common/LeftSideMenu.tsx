@@ -80,7 +80,7 @@ const LeftSideMenu = () => {
           <h3 className="user-card__name">
             {user?.firstName} {user?.lastName}
           </h3>
-          <span className="user-card__id">ID : {user.id}</span>
+          <span className="user-card__id">ID : {user?.userId}</span>
         </div>
         <div className="user-action-card">
           <ul className="user-action-list">
