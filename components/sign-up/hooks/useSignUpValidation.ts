@@ -1,4 +1,3 @@
-import { setUser } from "@/redux/slices/auth/auth.slice";
 import { authService } from "@/shared/services";
 import {
   fetchTimeZone,
@@ -6,11 +5,9 @@ import {
   validatePhoneNumber,
 } from "@/shared/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CountryData } from "react-phone-input-2";
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {
   SignUpInputType,
@@ -19,7 +16,6 @@ import {
 
 export const useSignUpValidation = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
   const {
     register,
     control,
@@ -53,7 +49,6 @@ export const useSignUpValidation = () => {
         ...values,
         timezone: fetchTimeZone(),
       });
-      dispatch(setUser(user));
       window.location.href = "/";
     } catch (error) {
       toast.error(transformError(error).message);
