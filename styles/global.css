@@ -51,3 +51,13 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.image-swiper-slide {
+  width: 100px !important;
+  height: 60px !important;
+}
+
+.product-description ul {
+  list-style: disc;
+  margin-left: 12px;
+}

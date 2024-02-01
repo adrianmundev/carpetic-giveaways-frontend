@@ -1,30 +1,47 @@
 import Link from "next/link";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
 import { AppContext } from "../../context/context";
+import { Product } from "@/shared/types/product";
+import { calculateTicketPercentage } from "@/shared/utils";
 
-const ContestRight = () => {
+type ContestRightProp = {
+  product: Product;
+};
+
+const ContestRight: React.FC<ContestRightProp> = ({ product }) => {
   const { incrementHandle, decrementHandle, quantity } = useContext(AppContext);
+  const ticketPercentage = calculateTicketPercentage(
+    product.totalTickets,
+    product.ticketsSold,
+  );
 
   return (
     <div className="contest-cart__right">
       <h4 className="subtitle">Enter now for a chance to win</h4>
-      <h3 className="contest-name">The Breeze Zodiac IX</h3>
-      <p>This competition has a maximum of 29994 entries.</p>
-      <div className="contest-num">
+      <h3 className="contest-name">{product.name}</h3>
+      <p className="tw-mb-4">
+        This competition has a maximum of {product.totalTickets} entries.
+      </p>
+      {/* <div className="contest-num">
         Contest no: <span>B2T</span>
-      </div>
+      </div> */}
       <h4>Tickets Sold</h4>
       <div className="ticket-amount">
         <span className="left">0</span>
-        <span className="right">29994</span>
-        <div className="progressbar" data-perc="70%">
-          <div className="bar"></div>
+        <span className="right">{product.totalTickets}</span>
+        <div className="progressbar" data-perc={`${ticketPercentage}%`}>
+          <div
+            className="bar"
+            style={{
+              width: ticketPercentage > 0 ? `${ticketPercentage}%` : 0,
+            }}
+          />
         </div>
-        <p>Only 12045 remaining!</p>
+        <p>Only {product.totalTickets - product.ticketsSold} remaining!</p>
       </div>
       <div className="ticket-price">
-        <span className="amount">$4.99</span>
+        <span className="amount">£{product.price}</span>
         <small>Per ticket</small>
       </div>
       <div className="d-flex flex-wrap align-items-center mb-30">
@@ -35,7 +52,7 @@ const ContestRight = () => {
               type="number"
               value={quantity}
               // defaultValue={quantity
-              onChange={() => setQuantity(quantity)}
+              // onChange={() => setQuantity(quantity)}
             />
             <div className="quantity-nav">
               <div
@@ -64,17 +81,17 @@ const ContestRight = () => {
       <ul className="social-links align-items-center">
         <li>Share :</li>
         <li>
-          <Link href="/#">
+          <Link href="/#" className="tw-flex tw-items-center tw-justify-center">
             <FaFacebookF />
           </Link>
         </li>
         <li>
-          <Link href="/#">
+          <Link href="/#" className="tw-flex tw-items-center tw-justify-center">
             <FaTwitter />
           </Link>
         </li>
         <li>
-          <Link href="/#">
+          <Link href="/#" className="tw-flex tw-items-center tw-justify-center">
             <FaLinkedinIn />
           </Link>
         </li>

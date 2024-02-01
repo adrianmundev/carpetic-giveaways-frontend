@@ -3,8 +3,17 @@ import RendererCountdown from "../common/RendererCountdown";
 import VehicleOverview from "../common/VehicleOverview";
 import ContestRight from "./ContestRight";
 import ContestSlider from "./ContestSlider";
+import { Product } from "@/shared/types/product";
+import React, { useRef } from "react";
+import parse from "html-react-parser";
 
-const ContestBody = () => {
+type ContestBodyProps = {
+  product: Product;
+};
+
+const ContestBody: React.FC<ContestBodyProps> = ({ product }) => {
+  const descriptionRef = useRef(parse(product.description));
+  const productDetailsRef = useRef(parse(product.productDetails));
   return (
     <section className="pb-120 mt-minus-300">
       <div className="container">
@@ -14,7 +23,7 @@ const ContestBody = () => {
               <p className="mb-2">This competition ends in:</p>
               <div className="clock">
                 <Countdown
-                  date={Date.now() + 1000000000}
+                  date={product.drawDate}
                   renderer={RendererCountdown}
                 />
               </div>
@@ -24,10 +33,12 @@ const ContestBody = () => {
           <div className="col-lg-12">
             <div className="contest-cart">
               {/* Context slider for one */}
-              <ContestSlider />
+              <div className="contest-cart__left">
+                <ContestSlider product={product} />
+              </div>
 
               {/* Contest right section */}
-              <ContestRight />
+              <ContestRight product={product} />
             </div>
           </div>
 
@@ -74,7 +85,9 @@ const ContestBody = () => {
                   aria-labelledby="description-tab"
                 >
                   {/* vehicle Overview here */}
-                  <VehicleOverview />
+                  <div className="product-description">
+                    {descriptionRef.current}
+                  </div>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -83,21 +96,12 @@ const ContestBody = () => {
                   aria-labelledby="details-tab"
                 >
                   <div className="content-block">
-                    <h3 className="title">Competition Details</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Duis sed ex eget mi sollicitudin consequat. Sed rhoncus
-                      ligula vel justo dignissim aliquam. Maecenas non est vitae
-                      ipsum luctus feugiat. Fusce purus nunc, sodales at
-                      condimentum sed, ullamcorper a nulla. Nam justo est,
-                      venenatis quis tellus in, volutpat eleifend nunc.
-                      Vestibulum congue laoreet mi non interdum. Ut ut dapibus
-                      tellus.
-                    </p>
+                    {productDetailsRef.current}
                   </div>
                 </div>
               </div>
             </div>
+            <VehicleOverview />
           </div>
         </div>
       </div>

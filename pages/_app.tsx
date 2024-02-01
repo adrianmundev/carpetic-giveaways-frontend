@@ -36,20 +36,20 @@ function MyApp({ Component, pageProps }) {
         <title>Carpatic Giveaways - Online Lotto & Lottery Reactjs</title>
       </Head>
       <ReduxProvider store={store}>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <SessionContainer>
           <Layout>
-            <ToastContainer
-              position="bottom-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
             <Component {...pageProps} />
           </Layout>
         </SessionContainer>

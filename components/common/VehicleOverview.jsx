@@ -8,18 +8,7 @@ import specification_6 from "/public/images/icon/specification/6.png";
 
 const VehicleOverview = () => {
   return (
-    <>
-      <div className="content-block">
-        <h3 className="title">Vehicle Overview</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed ex
-          eget mi sollicitudin consequat. Sed rhoncus ligula vel justo dignissim
-          aliquam. Maecenas non est vitae ipsum luctus feugiat. Fusce purus
-          nunc, sodales at condimentum sed, ullamcorper a nulla. Nam justo est,
-          venenatis quis tellus in, volutpat eleifend nunc. Vestibulum congue
-          laoreet mi non interdum. Ut ut dapibus tellus.
-        </p>
-      </div>
+    <section className="tw-mt-12">
       <div className="content-block">
         <h3 className="title">Specifications</h3>
         <div className="row mb-none-30">
@@ -91,7 +80,7 @@ const VehicleOverview = () => {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

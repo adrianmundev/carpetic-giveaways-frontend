@@ -48,7 +48,13 @@ export function withAuth<Props>({
       // only show loader when initializing session (first time)
       if (isInitializing || shouldRedirect) {
         return (
-          <div className="tw-grid tw-flex-1 tw-place-items-center">
+          <div
+            className="tw-flex tw-justify-center tw-items-center"
+            style={{
+              minHeight: "calc(100vh - 40px)",
+              height: "100%",
+            }}
+          >
             <CircleLoader />
           </div>
         );

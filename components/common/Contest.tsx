@@ -6,14 +6,19 @@ import ContestCard from "../cards/ContestCard";
 import contest_bg from "/public/images/elements/contest-bg.png";
 import box from "/public/images/icon/btn/box.png";
 import car from "/public/images/icon/btn/car.png";
+import { Product } from "@/shared/types/product";
 
-const Contest = () => {
+type ContestProps = {
+  products: Product[];
+};
+
+const Contest: React.FC<ContestProps> = ({ products }) => {
   const [filterData, setFilterData] = useState([]);
   const [filterBy, setFilterBy] = useState("dream_car");
 
   useEffect(() => {
     const data = contestData.filter((itm) =>
-      itm.tags?.find((itme) => itme === filterBy)
+      itm.tags?.find((itme) => itme === filterBy),
     );
 
     setFilterData(data);
@@ -92,14 +97,16 @@ const Contest = () => {
                 aria-labelledby="home-tab"
               >
                 <div className="row mb-none-30">
-                  {filterData.map((itm) => (
-                    <div key={itm.id} className="col-xl-4 col-md-6 mb-30">
-                      <ContestCard itm={itm} />
+                  {products.map((product) => (
+                    <div key={product.id} className="col-xl-4 col-md-6 mb-30">
+                      <Link href={`/competitions/${product.id}`}>
+                        <ContestCard product={product} />
+                      </Link>
                     </div>
                   ))}
                 </div>
               </div>
-              <div
+              {/* <div
                 className="tab-pane fade"
                 id="profile-tab-pane"
                 role="tabpanel"
@@ -112,7 +119,7 @@ const Contest = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
