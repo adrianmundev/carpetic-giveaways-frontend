@@ -99,9 +99,7 @@ const Contest: React.FC<ContestProps> = ({ products }) => {
                 <div className="row mb-none-30">
                   {products.map((product) => (
                     <div key={product.id} className="col-xl-4 col-md-6 mb-30">
-                      <Link href={`/competitions/${product.id}`}>
-                        <ContestCard product={product} />
-                      </Link>
+                      <ContestCard product={product} />
                     </div>
                   ))}
                 </div>

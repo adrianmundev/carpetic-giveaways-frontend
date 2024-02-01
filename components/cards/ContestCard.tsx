@@ -24,6 +24,7 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
 
   return (
     <div className="contest-card">
+      <Link href={`/competitions/${product.id}`} className="item-link" />
       <div className="contest-card__thumb">
         <Image src={thumbnail} alt={product.name} fill />
         <a
