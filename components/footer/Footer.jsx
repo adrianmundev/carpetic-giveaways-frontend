@@ -12,7 +12,7 @@ const Footer = () => {
         <Image src={round_shape_2} alt="image" />
       </div>
       <div className="container">
-        <div className="row">
+        {/*<div className="row">
           <div className="col-lg-12">
             <div className="subscribe-area">
               <div className="left">
@@ -33,7 +33,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+  </div>*/}
       </div>
       <div className="container pt-120">
         <div className="row pb-5 align-items-center">
@@ -81,17 +81,26 @@ const Footer = () => {
           <div className="col-lg-6">
             <ul className="social-links justify-content-lg-end justify-content-center">
               <li>
-                <Link href="/#">
+                <Link
+                  href="/#"
+                  className="tw-flex tw-justify-center tw-items-center"
+                >
                   <FaFacebookF />
                 </Link>
               </li>
               <li>
-                <Link href="/#">
+                <Link
+                  href="/#"
+                  className="tw-flex tw-justify-center tw-items-center"
+                >
                   <FaTwitter />
                 </Link>
               </li>
               <li>
-                <Link href="/#">
+                <Link
+                  href="/#"
+                  className="tw-flex tw-justify-center tw-items-center"
+                >
                   <FaLinkedinIn />
                 </Link>
               </li>

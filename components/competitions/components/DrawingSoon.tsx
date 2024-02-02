@@ -21,7 +21,7 @@ export const DrawingSoon: React.FC<DrawingSoonProps> = ({ products }) => {
           No Competitions Active
         </div>
       )}
-      <div className="tw-grid tw-grid-cols-3 tw-auto-rows-min tw-gap-8">
+      <div className="tw-grid tw-grid-cols-1 sm:tw-grid-cols-2 lg:tw-grid-cols-3 tw-auto-rows-min tw-gap-8">
         {products.map((product) => (
           <ContestCard key={product.id} product={product} />
         ))}

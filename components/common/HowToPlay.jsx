@@ -22,10 +22,8 @@ const HowToPlay = () => {
         </div>
         <div className="row mb-none-30 justify-content-xl-start justify-content-center">
           <div className="col-xl-3 col-lg-4 col-sm-6 mb-30">
-            <div
-              className="play-card play-card--one bg_img"
-            >
-              <div className="play-card__icon">
+            <div className="play-card play-card--one bg_img">
+              <div className="play-card__icon tw-flex tw-justify-center tw-items-center">
                 <Image src={play_1} alt="image-icon" />
                 <span className="play-card__number">01</span>
               </div>
@@ -36,10 +34,8 @@ const HowToPlay = () => {
             </div>
           </div>
           <div className="col-xl-3 col-lg-4 col-sm-6 mb-30">
-            <div
-              className="play-card play-card--two bg_img"
-            >
-              <div className="play-card__icon">
+            <div className="play-card play-card--two bg_img">
+              <div className="play-card__icon tw-flex tw-justify-center tw-items-center">
                 <Image src={play_2} alt="image-icon" />
                 <span className="play-card__number">02</span>
               </div>
@@ -50,10 +46,8 @@ const HowToPlay = () => {
             </div>
           </div>
           <div className="col-xl-3 col-lg-4 col-sm-6 mb-30">
-            <div
-              className="play-card play-card--three bg_img"
-            >
-              <div className="play-card__icon">
+            <div className="play-card play-card--three bg_img">
+              <div className="play-card__icon tw-flex tw-justify-center tw-items-center">
                 <Image src={play_3} alt="image-icon" />
                 <span className="play-card__number">03</span>
               </div>

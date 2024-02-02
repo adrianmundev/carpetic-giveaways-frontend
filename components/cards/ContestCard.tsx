@@ -43,7 +43,7 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
     if (oneDayLater.isAfter(rewardDate)) {
       return (
         <div className="tw-absolute tw-bottom-0 tw-left-0 tw-flex tw-h-9">
-          <div className="tw-flex tw-min-w-[180px] tw-items-center tw-bg-SelectiveYellow tw-px-4 tw-font-bold tw-text-white">
+          <div className="tw-flex tw-min-w-[180px] tw-items-center tw-bg-SelectiveYellow tw-px-4 tw-font-bold tw-text-white tw-text-sm md:tw-text-base">
             <div className="tw-flex tw-h-screen tw-items-center tw-justify-center">
               <div className="tw-relative tw-mr-2 tw-inline-flex">
                 <div className="tw-h-2 tw-w-2 tw-rounded-full tw-bg-white"></div>
@@ -64,7 +64,7 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
   const thumbnail = product.thumbnailUrl || product.images[0]?.imageUrl;
 
   return (
-    <div className="contest-card">
+    <div className="contest-card tw-h-full">
       <Link href={`/competitions/${product.id}`} className="item-link" />
       <div className="contest-card__thumb tw-relative">
         <Image src={thumbnail} alt={product.name} fill />
