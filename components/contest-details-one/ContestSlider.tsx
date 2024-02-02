@@ -53,6 +53,11 @@ const ContestSlider = ({ product }: { product: Product }) => {
     topSwiper?.slidePrev();
   };
 
+  const loopSettings =
+    product.images?.length <= 3
+      ? { loop: false }
+      : { loop: true, loopedSlides: product.images?.length };
+
   return (
     <React.Fragment>
       <SwiperReact
@@ -103,9 +108,11 @@ const ContestSlider = ({ product }: { product: Product }) => {
               watchSlidesProgress={true}
               observer={true}
               observeParents={true}
-              loop={true}
+              {...loopSettings}
               spaceBetween={20}
-              slidesPerView="auto"
+              slidesPerView={
+                product.images?.length <= 3 ? product.images?.length : "auto"
+              }
             >
               {product.images.map((image, i) => {
                 return (

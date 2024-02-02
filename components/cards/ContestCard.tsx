@@ -3,12 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaRegHeart } from "react-icons/fa";
 import dayjs from "dayjs";
+import { calculateTicketPercentage } from "@/shared/utils";
 
 type ContestCardProps = {
   product: Product;
 };
 
 const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
+  const ticketPercentage = calculateTicketPercentage(
+    product.totalTickets,
+    product.ticketsSold,
+  );
+
   const displayRemainingDays = (drawDate: Date) => {
     const now = dayjs();
     const rewardDate = dayjs(drawDate);
@@ -20,12 +26,37 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
     return days;
   };
 
+  const displayDrawingSoonTag = () => {
+    const now = dayjs();
+    const rewardDate = dayjs(product.drawDate);
+    const days = rewardDate.diff(now, "days");
+    if (days > 1) {
+      return null;
+    }
+
+    return (
+      <div className="tw-absolute tw-bottom-0 tw-left-0 tw-flex tw-h-9">
+        <div className="tw-flex tw-min-w-[180px] tw-items-center tw-bg-SelectiveYellow tw-px-4 tw-font-bold tw-text-white">
+          <div className="tw-flex tw-h-screen tw-items-center tw-justify-center">
+            <div className="tw-relative tw-mr-2 tw-inline-flex">
+              <div className="tw-h-2 tw-w-2 tw-rounded-full tw-bg-white"></div>
+              <div className="tw-absolute tw-left-0 tw-top-0 tw-h-2 tw-w-2 tw-animate-ping tw-rounded-full tw-bg-white"></div>
+              <div className="tw-absolute tw-left-0 tw-top-0 tw-h-2 tw-w-2 tw-animate-pulse tw-rounded-full tw-bg-white"></div>
+            </div>
+          </div>
+          Closes Tomorrow {dayjs(product.drawDate).format("hh:mm")}
+        </div>
+        <div className="tw-w-0 tw-border-r-[22px] tw-border-t-[36px] tw-border-transparent tw-border-t-SelectiveYellow" />
+      </div>
+    );
+  };
+
   const thumbnail = product.thumbnailUrl || product.images[0]?.imageUrl;
 
   return (
     <div className="contest-card">
       <Link href={`/competitions/${product.id}`} className="item-link" />
-      <div className="contest-card__thumb">
+      <div className="contest-card__thumb tw-relative">
         <Image src={thumbnail} alt={product.name} fill />
         <a
           href="#0"
@@ -33,10 +64,24 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
         >
           <FaRegHeart />
         </a>
+        {displayDrawingSoonTag()}
         {/* <div className="contest-num">
           <span>contest no:</span>
           <h4 className="number">{it}</h4>
         </div> */}
+      </div>
+      <div className="tw-flex tw-items-center gap-2 tw-p-2">
+        <div className="progressbar" data-perc={`${ticketPercentage}%`}>
+          <div
+            className="bar"
+            style={{
+              width: ticketPercentage > 0 ? `${ticketPercentage}%` : 0,
+            }}
+          />
+        </div>
+        <div className="tw-text-white tw-font-medium tw-text-nowrap">
+          {ticketPercentage}% sold
+        </div>
       </div>
       <div className="tw-flex tw-flex-col tw-items-start tw-gap-3 tw-p-6">
         <div className="left">

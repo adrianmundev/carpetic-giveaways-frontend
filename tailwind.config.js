@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         BrightTurquoise: "#00FFB8",
         SelectiveYellow: "#ffb200",
+        Indigo: "#5A4BCC",
         primary: {
           DEFAULT: "#4361ee",
           light: "#eaf1ff",
