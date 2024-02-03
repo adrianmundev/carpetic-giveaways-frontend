@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Product } from "@/shared/types/product";
 import Image from "next/image";
 import Swiper, { Autoplay, FreeMode, Navigation, Thumbs } from "swiper";
@@ -9,6 +9,8 @@ import "swiper/css/free-mode";
 import "swiper/css/thumbs";
 import { cn } from "@/shared/utils";
 import { FC } from "react";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import "photoswipe/style.css";
 
 interface IconCaretDownProps {
   className?: string;
@@ -39,6 +41,34 @@ const ContestSlider = ({ product }: { product: Product }) => {
   const [realIndex, setRealIndex] = useState(0);
   const [thumbsSwiper, setThumbsSwiper] = useState<Swiper | null>(null);
   const [topSwiper, setTopSwiper] = useState<Swiper | null>(null);
+
+  useEffect(() => {
+    const sources = product.images.map((image) => ({
+      src: image.imageUrl,
+      alt: product.name,
+      width: 1500,
+      height: 1000,
+    }));
+    let lightbox = new PhotoSwipeLightbox({
+      dataSource: sources,
+      showHideAnimationType: "none",
+      pswpModule: () => import("photoswipe"),
+    });
+    lightbox.init();
+
+    const openLightBox = (event: CustomEvent) => {
+      lightbox.loadAndOpen(event.detail);
+    };
+
+    document.addEventListener("photoswiper-click", openLightBox);
+
+    return () => {
+      document.removeEventListener("photoswiper-click", openLightBox);
+      lightbox.destroy();
+      lightbox = null;
+    };
+  }, [product]);
+
   const handleSlideChange = (swiper: Swiper) => {
     setRealIndex(swiper.realIndex);
   };
@@ -53,6 +83,14 @@ const ContestSlider = ({ product }: { product: Product }) => {
     topSwiper?.slidePrev();
   };
 
+  const handleTopSliderClick = (swiper: Swiper) => {
+    document.dispatchEvent(
+      new CustomEvent("photoswiper-click", {
+        detail: swiper.realIndex,
+      }),
+    );
+  };
+
   const loopSettings =
     product.images?.length <= 3
       ? { loop: false }
@@ -65,6 +103,7 @@ const ContestSlider = ({ product }: { product: Product }) => {
         thumbs={{
           swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
         }}
+        onClick={handleTopSliderClick}
         slidesPerView={1}
         autoplay={{
           delay: 2000,

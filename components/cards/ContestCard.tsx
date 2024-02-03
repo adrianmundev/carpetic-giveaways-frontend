@@ -15,32 +15,21 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
     product.ticketsSold,
   );
 
-  const displayRemainingDays = (drawDate: Date) => {
+  const displayRemainingDays = () => {
     const now = dayjs();
-    const oneDayLater = now
-      .add(1, "days")
-      .set("hours", 23)
-      .set("minutes", 59)
-      .set("seconds", 59)
-      .set("milliseconds", 999);
-
     const rewardDate = dayjs(product.drawDate);
-    const days = Math.ceil(rewardDate.diff(now, "days", true));
-
-    if (oneDayLater.isAfter(rewardDate)) {
-      return null;
-    }
-
+    const days = rewardDate.diff(now, "days");
     return days;
   };
 
   const displayDrawingSoonTag = () => {
     const now = dayjs();
-    const oneDayLater = now.add(1, "days");
-
+    const dateOfNow = now.date();
     const rewardDate = dayjs(product.drawDate);
+    const dateOfReward = rewardDate.date();
+    const days = rewardDate.diff(now, "days");
 
-    if (oneDayLater.isAfter(rewardDate)) {
+    if (days <= 0 && dateOfReward > dateOfNow) {
       return (
         <div className="tw-absolute tw-bottom-0 tw-left-0 tw-flex tw-h-9">
           <div className="tw-flex tw-min-w-[180px] tw-items-center tw-bg-SelectiveYellow tw-px-4 tw-font-bold tw-text-white tw-text-sm md:tw-text-base">
@@ -64,10 +53,16 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
   const thumbnail = product.thumbnailUrl || product.images[0]?.imageUrl;
 
   return (
-    <div className="contest-card tw-h-full">
+    <div className="contest-card tw-h-full tw-flex tw-flex-col">
       <Link href={`/competitions/${product.id}`} className="item-link" />
-      <div className="contest-card__thumb tw-relative">
-        <Image src={thumbnail} alt={product.name} fill />
+      <div className="tw-relative tw-w-full tw-aspect-[6/4]">
+        <Image
+          src={thumbnail}
+          alt={product.name}
+          loading="lazy"
+          fill
+          className="tw-object-cover"
+        />
         <a
           href="#0"
           className="action-icon tw-flex tw-justify-center tw-items-center"
@@ -80,40 +75,40 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
           <h4 className="number">{it}</h4>
         </div> */}
       </div>
-      <div className="tw-flex tw-items-center gap-2 tw-p-2">
-        <div className="progressbar" data-perc={`${ticketPercentage}%`}>
-          <div
-            className="bar"
-            style={{
-              width: ticketPercentage > 0 ? `${ticketPercentage}%` : 0,
-            }}
-          />
+      <div className="tw-flex tw-flex-col tw-flex-1">
+        <div className="tw-flex tw-items-center gap-2 tw-p-2">
+          <div className="progressbar" data-perc={`${ticketPercentage}%`}>
+            <div
+              className="bar"
+              style={{
+                width: ticketPercentage > 0 ? `${ticketPercentage}%` : 0,
+              }}
+            />
+          </div>
+          <div className="tw-text-white tw-font-medium tw-text-nowrap">
+            {ticketPercentage}% sold
+          </div>
         </div>
-        <div className="tw-text-white tw-font-medium tw-text-nowrap">
-          {ticketPercentage}% sold
-        </div>
-      </div>
-      <div className="tw-flex tw-flex-col tw-items-start tw-gap-3 tw-p-6">
-        <div className="left">
+        <div className="left tw-px-2 mb-2 tw-flex-1">
           <h5 className="contest-card__name">{product.name}</h5>
         </div>
-        <div className="right tw-flex tw-items-center tw-justify-between tw-w-full">
+        <div className="right tw-flex tw-items-center tw-justify-between tw-w-full tw-px-2">
           <span className="contest-card__price">${product.price}</span>
           <p>Ticket price</p>
         </div>
-      </div>
-      <div className="contest-card__footer">
-        <ul className="contest-card__meta">
-          <li>
-            <i className="las la-clock"></i>
-            <span>{displayRemainingDays(product.drawDate)}d</span>
-          </li>
-          <li>
-            <i className="las la-ticket-alt"></i>
-            <span>{product.totalTickets - product.ticketsSold}</span>
-            <p>Remaining</p>
-          </li>
-        </ul>
+        <div className="contest-card__footer">
+          <ul className="contest-card__meta">
+            <li>
+              <i className="las la-clock"></i>
+              <span>{displayRemainingDays()}d</span>
+            </li>
+            <li>
+              <i className="las la-ticket-alt"></i>
+              <span>{product.totalTickets - product.ticketsSold}</span>
+              <p>Remaining</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

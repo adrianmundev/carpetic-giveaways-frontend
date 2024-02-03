@@ -25,7 +25,7 @@ const Competitions = ({
 }: CompetitionsProps) => {
   return (
     <section className="inner-hero-section style--four">
-      <div className="px-5">
+      <div className="px-3">
         <span className="tw-inline-block tw-text-SelectiveYellow tw-font-medium tw-text-sm tw-mb-5">
           Competitions
         </span>
