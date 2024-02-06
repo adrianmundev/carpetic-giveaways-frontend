@@ -53,8 +53,11 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
   const thumbnail = product.thumbnailUrl || product.images[0]?.imageUrl;
 
   return (
-    <div className="contest-card tw-h-full tw-flex tw-flex-col">
-      <Link href={`/competitions/${product.id}`} className="item-link" />
+    <div className="contest-card tw-h-full tw-flex tw-flex-col tw-transition-transform hover:tw-scale-[1.01]">
+      <Link
+        href={`/competitions/${product.id}`}
+        className="item-link hover:tw-scale-105"
+      />
       <div className="tw-relative tw-w-full tw-aspect-[6/4]">
         <Image
           src={thumbnail}
