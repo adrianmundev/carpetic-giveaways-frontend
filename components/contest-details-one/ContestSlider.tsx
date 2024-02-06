@@ -96,6 +96,16 @@ const ContestSlider = ({ product }: { product: Product }) => {
       ? { loop: false }
       : { loop: true, loopedSlides: product.images?.length };
 
+  const autoCompleteSettings =
+    product.images?.length > 1
+      ? {
+          autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+          },
+        }
+      : {};
+
   return (
     <React.Fragment>
       <SwiperReact
@@ -105,10 +115,7 @@ const ContestSlider = ({ product }: { product: Product }) => {
         }}
         onClick={handleTopSliderClick}
         slidesPerView={1}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
+        {...autoCompleteSettings}
         onInit={handleSwiperInit}
         onSlideChange={handleSlideChange}
         centeredSlides={true}

@@ -166,7 +166,7 @@ const Header = () => {
                       ["Cars", "/competitions/cars"],
                       ["Tech", "/competitions/tech"],
                       ["Cash", "/competitions/cash"],
-                      ["Watches", "/#"],
+                      ["Watches", "/competitions/watches"],
                     ].map(([itm, url], i) => (
                       <li key={i}>
                         <Link href={url} onClick={() => setShow(false)}>

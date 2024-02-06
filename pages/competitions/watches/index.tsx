@@ -16,24 +16,19 @@ const Cars = ({ products }: { products: Product[] }) => {
             </Link>
           </span>
           <span>/</span>
-          <span>Cars</span>
+          <span>Watches</span>
         </div>
-        <h2 className="tw-text-3xl tw-uppercase tw-font-bold my-4">Cars</h2>
+        <h2 className="tw-text-3xl tw-uppercase tw-font-bold my-4">Watches</h2>
         <CompetitionOverview>
-          Since 2018, we&apos;ve given away over 7,000+ prizes and have done a
-          wide range of dream car prizes and are the UK&apos;s Largest Car
-          Competition Company. Enter for a chance to win one of our many prize
-          draws today. Simply answer the qualifying question, grab your ticket
-          number(s), and tune in for the live draw to see if you&apos;re our
-          next lucky winner. Many of our prizes come with a cash prize too to
-          help with car insurance, mods, tax, and more or there are even huge
-          cash alternatives available too. We have tickets available ranging
-          from modded Vauxhall Corsa&apos;s to high-end dream cars like
-          McLaren&apos;s, Ferrari&apos;s, Lamborghinis,
-          BMW&apos;s,Porsche&apos;s, and more and there&apos;s something new
-          added every week. Don&apos;t want to win a car? Then head over to see
-          what cash prize and tech bundles we have available. There&apos;s
-          something for everyone at Dream Car Giveaways.
+          Don&apos;t miss your chance to win one of these stunning luxury
+          watches we have on the site. We like to mix things up regularly so if
+          there&apos;s something here that doesn&apos;t take your fancy to make
+          sure to bookmark this page to keep up to date with all of our latest
+          Rolex, Tag Heuer, Breitling, Omega watches and more. We also offer
+          cash alternatives on many of our watch prizes and competitions so rest
+          assured that if the watch wouldn&apos;t suit yourself or that lucky
+          friend or family member, there&apos;s a whole load of tax-free cash
+          available instead.
         </CompetitionOverview>
         <div className="tw-w-20 tw-h-12" />
         {products.length === 0 && (
@@ -57,7 +52,7 @@ export const getServerSideProps = async () => {
   const query = qs.stringify(
     {
       filter: {
-        category: { equalTo: "cars" },
+        category: { equalTo: "watches" },
       },
       limit: 50,
     },

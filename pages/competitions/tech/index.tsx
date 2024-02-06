@@ -16,7 +16,7 @@ const Cars = ({ products }: { products: Product[] }) => {
             </Link>
           </span>
           <span>/</span>
-          <span>Cars</span>
+          <span>Tech</span>
         </div>
         <h2 className="tw-text-3xl tw-uppercase tw-font-bold my-4">Tech</h2>
         <CompetitionOverview>
