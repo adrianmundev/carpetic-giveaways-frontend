@@ -115,7 +115,7 @@ const ContestSlider = ({ product }: { product: Product }) => {
         loop={true}
         navigation={false}
         modules={[FreeMode, Thumbs, Autoplay]}
-        className="tw-h-96 tw-w-full"
+        className="tw-aspect-[3.2/2] sm:tw-aspect-[8/5]"
       >
         {product.images.map((image, index) => (
           <SwiperSlide key={index}>

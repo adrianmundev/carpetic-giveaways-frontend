@@ -154,7 +154,7 @@ const Header = () => {
                 </li>
                 <li
                   className={`menu_has_children ${
-                    open === "Contest" ? "open" : ""
+                    open === "Competitions" ? "open" : ""
                   }`}
                 >
                   <Link href="/#" onClick={(e) => handleOpen(e)}>
@@ -163,9 +163,9 @@ const Header = () => {
                   <ul className="sub-menu">
                     {[
                       ["All Competitions", "/competitions"],
-                      ["Cars", "/#"],
-                      ["Tech", "/#"],
-                      ["Cash", "/#"],
+                      ["Cars", "/competitions/cars"],
+                      ["Tech", "/competitions/tech"],
+                      ["Cash", "/competitions/cash"],
                       ["Watches", "/#"],
                     ].map(([itm, url], i) => (
                       <li key={i}>

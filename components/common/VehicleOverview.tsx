@@ -5,24 +5,31 @@ import specification_3 from "/public/images/icon/specification/3.png";
 import specification_4 from "/public/images/icon/specification/4.png";
 import specification_5 from "/public/images/icon/specification/5.png";
 import specification_6 from "/public/images/icon/specification/6.png";
+import { Product } from "@/shared/types/product";
+import React from "react";
 
-const VehicleOverview = () => {
+type VehicleOverviewProps = {
+  product: Product;
+};
+
+const VehicleOverview: React.FC<VehicleOverviewProps> = ({ product }) => {
+  console.log(product.additionalAttributes);
   return (
     <section className="tw-mt-12">
       <div className="content-block">
         <h3 className="title">Specifications</h3>
         <div className="row mb-none-30">
-          <div className="col-lg-4 col-sm-6 mb-30">
+          {/* <div className="col-lg-4 col-sm-6 mb-30">
             <div className="icon-item">
               <div className="icon-item__thumb">
                 <Image src={specification_1} alt="specification_1" />
               </div>
               <div className="icon-item__content">
                 <p>0-62mph</p>
-                <span>4.0 secs</span>
+                <span>{product.additionalAttributes.bhp} secs</span>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="col-lg-4 col-sm-6 mb-30">
             <div className="icon-item">
               <div className="icon-item__thumb">
@@ -30,7 +37,7 @@ const VehicleOverview = () => {
               </div>
               <div className="icon-item__content">
                 <p>Top Speed</p>
-                <span>181 mph</span>
+                <span>{product.additionalAttributes.speed} mph</span>
               </div>
             </div>
           </div>
@@ -41,7 +48,7 @@ const VehicleOverview = () => {
               </div>
               <div className="icon-item__content">
                 <p>Power</p>
-                <span>542 bhp</span>
+                <span>{product.additionalAttributes.power} bhp</span>
               </div>
             </div>
           </div>
@@ -52,7 +59,7 @@ const VehicleOverview = () => {
               </div>
               <div className="icon-item__content">
                 <p>Displacement</p>
-                <span>4.0ltr</span>
+                <span>{product.additionalAttributes.displacement}ltr</span>
               </div>
             </div>
           </div>
@@ -63,7 +70,7 @@ const VehicleOverview = () => {
               </div>
               <div className="icon-item__content">
                 <p>bhp</p>
-                <span>691</span>
+                <span>{product.additionalAttributes.bhp}</span>
               </div>
             </div>
           </div>
@@ -74,7 +81,7 @@ const VehicleOverview = () => {
               </div>
               <div className="icon-item__content">
                 <p>Year</p>
-                <span>2019</span>
+                <span>{product.additionalAttributes.year}</span>
               </div>
             </div>
           </div>

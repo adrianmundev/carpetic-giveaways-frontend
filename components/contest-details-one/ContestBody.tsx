@@ -6,6 +6,7 @@ import ContestSlider from "./ContestSlider";
 import { Product } from "@/shared/types/product";
 import React, { useRef } from "react";
 import parse from "html-react-parser";
+import { CategoryEnum } from "@/shared/enums";
 
 type ContestBodyProps = {
   product: Product;
@@ -87,6 +88,9 @@ const ContestBody: React.FC<ContestBodyProps> = ({ product }) => {
                   {/* vehicle Overview here */}
                   <div className="product-description">
                     {descriptionRef.current}
+                    {product.category === CategoryEnum.CARS && (
+                      <VehicleOverview product={product} />
+                    )}
                   </div>
                 </div>
                 <div
@@ -101,7 +105,6 @@ const ContestBody: React.FC<ContestBodyProps> = ({ product }) => {
                 </div>
               </div>
             </div>
-            <VehicleOverview />
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
     const now = dayjs();
     const rewardDate = dayjs(product.drawDate);
     const days = rewardDate.diff(now, "days");
-    return days;
+    return days < 0 ? 0 : days;
   };
 
   const displayDrawingSoonTag = () => {

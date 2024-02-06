@@ -61,3 +61,13 @@
   list-style: disc;
   margin-left: 12px;
 }
+
+.competition-overview-gradient {
+  background: linear-gradient(transparent, #f2f2f2);
+  position: absolute;
+  opacity: 0.2;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
