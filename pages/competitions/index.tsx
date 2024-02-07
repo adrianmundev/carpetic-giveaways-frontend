@@ -5,8 +5,11 @@ import {
   TechCompetitions,
   WatchesCompetitions,
 } from "@/components/competitions/components";
+import { CircleLoader } from "@/shared/components/circle-loader/CircleLoader";
+import { productService } from "@/shared/services/product.service";
 import { Product } from "@/shared/types/product";
 import React from "react";
+import useSWR from "swr";
 
 type CompetitionsProps = {
   drawing: Product[];
@@ -23,21 +26,40 @@ const Competitions = ({
   watches,
   tech,
 }: CompetitionsProps) => {
+  const { data, error, isLoading } = useSWR(
+    "/product/list/all",
+    productService.getAllProductsList,
+    {
+      fallbackData: { drawing, cars, cash, watches, tech },
+      refreshWhenOffline: false,
+      revalidateOnFocus: true,
+      refreshInterval: 60 * 1000,
+    },
+  );
+
+  if (isLoading) {
+    return <CircleLoader />;
+  }
+
+  if (error) {
+    return null;
+  }
+
   return (
     <section className="inner-hero-section style--four">
       <div className="px-3">
         <span className="tw-inline-block tw-text-SelectiveYellow tw-font-medium tw-text-sm tw-mb-5">
           Competitions
         </span>
-        <DrawingSoon products={drawing} />
+        <DrawingSoon products={data.drawing} />
         <div className="tw-w-20 tw-h-24" />
-        <CarsCompetitions products={cars} />
+        <CarsCompetitions products={data.cars} />
         <div className="tw-w-20 tw-h-24" />
-        <CashCompetitions products={cash} />
+        <CashCompetitions products={data.cash} />
         <div className="tw-w-20 tw-h-24" />
-        <WatchesCompetitions products={watches} />
+        <WatchesCompetitions products={data.watches} />
         <div className="tw-w-20 tw-h-24" />
-        <TechCompetitions products={tech} />
+        <TechCompetitions products={data.tech} />
       </div>
     </section>
   );
@@ -47,10 +69,7 @@ export default Competitions;
 
 export const getServerSideProps = async () => {
   try {
-    const response = await fetch(
-      `${process.env.CARPETIC_BACKEND}/product/list/all`,
-    );
-    const data = await response.json();
+    const data = await productService.getAllProductsList("/product/list/all");
     return {
       props: {
         ...data,

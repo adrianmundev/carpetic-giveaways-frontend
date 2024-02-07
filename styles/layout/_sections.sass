@@ -342,6 +342,35 @@
       p 
         font-size: 14px
         margin-left: 5px
+  &__ticket
+    width: 45px
+    height: 45px
+    border-radius: 50%
+    background-color: #ff5f01
+    position: relative
+    transition: background-color .25s
+
+    &::after
+      width: 20px
+      height: 1.5px
+      content: ""
+      border-radius: 1px
+      background-color: #fff
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%,-50%) 
+
+    &::before
+      width: 1.5px
+      height: 20px
+      content: ""
+      border-radius: 1px
+      background-color: #fff
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%,-50%)
 
 +keyframes (zoomIn)
   from

@@ -1,7 +1,8 @@
-import { Action, combineReducers, Reducer } from "@reduxjs/toolkit";
+import { combineReducers } from "@reduxjs/toolkit";
 import { authSliceReducer } from "@/redux/slices/auth/auth.slice";
-import { RootState } from "@/redux/store";
+import { ticketSliceReducer } from "@/redux/slices/ticket/ticket.slice";
 
 export const reducer = combineReducers({
   auth: authSliceReducer,
+  ticket: ticketSliceReducer,
 });

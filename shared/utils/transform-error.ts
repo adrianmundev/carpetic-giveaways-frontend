@@ -16,7 +16,6 @@ export const transformError = (error: unknown): APIError => {
   }
 
   if (error instanceof AxiosError) {
-    console.log(error.response);
     const message = error.response.data.message;
     const err = error.response.data.error;
     if (typeof message === "string") {

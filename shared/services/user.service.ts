@@ -1,7 +1,7 @@
 import {
   EditEmailAddressInputType,
   EditPhoneNumberInput,
-} from "../validation-schemas";
+} from "@/shared/validation-schemas";
 import { EditPersonalDetailsInput } from "../validation-schemas/editPersonalDetailsSchema";
 import { apiClient } from "./api.service";
 

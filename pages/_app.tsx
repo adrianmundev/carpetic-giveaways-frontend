@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "../styles/global.css";
 import "../styles/main.sass";
 import "react-toastify/dist/ReactToastify.css";
+import { TicketModal } from "@/components/modal/ticket-modal/TicketModal";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -48,6 +49,7 @@ function MyApp({ Component, pageProps }) {
           pauseOnHover
           theme="light"
         />
+        <TicketModal />
         <SessionContainer>
           <Layout>
             <Component {...pageProps} />
