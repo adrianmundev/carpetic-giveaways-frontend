@@ -71,6 +71,7 @@ export const useTicketModal = () => {
 
   const handleCloseModal = () => {
     dispatch(closeModalTicketModal());
+    dispatch(setQuantity(1));
     setQuantityInput("1");
   };
 
