@@ -72,6 +72,12 @@ export const useTicketModal = () => {
   const handleCloseModal = () => {
     dispatch(closeModalTicketModal());
     dispatch(setQuantity(1));
+    dispatch(
+      setQuestionAnswer({
+        questionAnswerId: "",
+        questionId: "",
+      }),
+    );
     setQuantityInput("1");
   };
 
