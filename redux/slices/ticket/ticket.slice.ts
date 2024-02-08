@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ticketService } from "@/shared/services";
 
 type TicketDetails = {
   productId: string;

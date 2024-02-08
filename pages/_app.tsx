@@ -13,6 +13,7 @@ import "../styles/global.css";
 import "../styles/main.sass";
 import "react-toastify/dist/ReactToastify.css";
 import { TicketModal } from "@/components/modal/ticket-modal/TicketModal";
+import { BasketModal } from "@/components/modal/basket-modal/BasketModal";
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -50,6 +51,7 @@ function MyApp({ Component, pageProps }) {
           theme="light"
         />
         <TicketModal />
+        <BasketModal />
         <SessionContainer>
           <Layout>
             <Component {...pageProps} />

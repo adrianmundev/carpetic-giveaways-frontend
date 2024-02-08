@@ -11,15 +11,6 @@ const Cart = () => {
         <div className="bg-shape">
           <Image src={inner_hero_shape} alt="inner_hero_shape" />
         </div>
-        <Banner
-          breadcrumb={[
-            ["Home", "/"],
-            ["Lottery", "/"],
-            ["Contest No: B2T", "/"],
-            ["Pick your Lottery Number", "/"],
-            ["My Cart", "/"],
-          ]}
-        />
       </div>
 
       {/* Total Cart Section here */}

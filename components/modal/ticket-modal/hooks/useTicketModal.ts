@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import useSWR from "swr";
 import dayjs from "dayjs";
 import { productService } from "@/shared/services/product.service";
+import { setBasketItem } from "@/redux/slices/basket/basket.slice";
 
 export const useTicketModal = () => {
   const [quantityInput, setQuantityInput] = useState("1");
@@ -73,6 +74,20 @@ export const useTicketModal = () => {
     setQuantityInput("1");
   };
 
+  const handleAddToBasketClick = () => {
+    handleCloseModal();
+    dispatch(
+      setBasketItem({
+        calculatedPrice: parseFloat(calculatedPrice),
+        productId: product.id,
+        productName: product.name,
+        productThumbnail: product.thumbnailUrl,
+        quantity: quantity,
+        productPrice: product.price,
+      }),
+    );
+  };
+
   const handleIncrementQuantity = (valueToAdd: number) => () => {
     const newQuantity = ticketService.increaseQuantity(
       product.maxTicketsPerPerson,
@@ -113,6 +128,11 @@ export const useTicketModal = () => {
     );
   };
 
+  const handleSetMaxQuantity = (maxTicketsPerPerson: number) => () => {
+    dispatch(setQuantity(maxTicketsPerPerson));
+    setQuantityInput(`${maxTicketsPerPerson}`);
+  };
+
   return {
     questionAnswerId,
     ticketLoading,
@@ -123,10 +143,12 @@ export const useTicketModal = () => {
     quantity,
     quantityInput,
     calculatedPrice,
+    handleAddToBasketClick,
     handleDecreamentQuantity,
     handleCloseModal,
     handleIncrementQuantity,
     handleQuantityChange,
     handleQuestionChange,
+    handleSetMaxQuantity,
   };
 };

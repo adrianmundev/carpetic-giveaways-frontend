@@ -106,11 +106,11 @@ const ContestCard: React.FC<ContestCardProps> = ({ product }) => {
         </div>
         <div className="tw-flex tw-justify-between tw-w-full tw-px-2 tw-pb-2">
           <div className="contest-card__price tw-flex tw-flex-col tw-justify-end">
-            ${product.price}
+            £{product.price}
           </div>
           <div
             onClick={handleBuyTicketClick}
-            className="contest-card__ticket"
+            className="contest-card__ticket tw-bg-Razzmatazz"
           />
         </div>
         <div className="contest-card__footer">

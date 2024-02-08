@@ -9,6 +9,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        green: "#22b868",
+        Razzmatazz: "#ec1379",
         Accent: "#ff5f01",
         BrightTurquoise: "#00FFB8",
         SelectiveYellow: "#ffb200",

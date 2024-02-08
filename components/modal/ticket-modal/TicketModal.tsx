@@ -31,9 +31,11 @@ export const TicketModal = () => {
     quantityInput,
     questionAnswerId,
     calculatedPrice,
+    handleAddToBasketClick,
     handleDecreamentQuantity,
     handleCloseModal,
     handleIncrementQuantity,
+    handleSetMaxQuantity,
     handleQuantityChange,
     handleQuestionChange,
   } = useTicketModal();
@@ -94,7 +96,11 @@ export const TicketModal = () => {
           <div
             onClick={handleIncrementQuantity(1)}
             role="button"
-            className="operator-btn plus-btn"
+            className={cn(
+              "operator-btn plus-btn",
+              quantity === product.maxTicketsPerPerson &&
+                "tw-cursor-default tw-pointer-events-none",
+            )}
           />
         </div>
         <div className="tw-text-sm tw-text-gray-400 my-3 mt-1">
@@ -105,7 +111,7 @@ export const TicketModal = () => {
           <TicketButton onClick={handleIncrementQuantity(10)}>+10</TicketButton>
           <TicketButton onClick={handleIncrementQuantity(25)}>+25</TicketButton>
           <TicketButton
-            onClick={handleIncrementQuantity(product.maxTicketsPerPerson)}
+            onClick={handleSetMaxQuantity(product.maxTicketsPerPerson)}
           >
             Max
           </TicketButton>
@@ -132,6 +138,7 @@ export const TicketModal = () => {
           </select>
         </div>
         <button
+          onClick={handleAddToBasketClick}
           disabled={isBasketBtnDisabled}
           className="tw-w-full tw-bg-black tw-text-white tw-text-base tw-flex tw-justify-center tw-items-center tw-h-12 tw-uppercase disabled:tw-opacity-35 disabled:tw-cursor-not-allowed"
         >

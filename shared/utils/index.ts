@@ -7,3 +7,4 @@ export { isEighteenOrOlder } from "./isEignteenOrOlder";
 export { cn } from "./tw-merge";
 export { formatPhoneNumber } from "./formatPhoneNumber";
 export { calculateTicketPercentage } from "./calculateTicketPercentage";
+export { parseObject } from "./parseObject";

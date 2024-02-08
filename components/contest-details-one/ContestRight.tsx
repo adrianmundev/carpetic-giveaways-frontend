@@ -1,20 +1,31 @@
 import Link from "next/link";
-import React, { useContext } from "react";
+import React from "react";
 import { FaFacebookF, FaLinkedinIn, FaTwitter } from "react-icons/fa";
-import { AppContext } from "../../context/context";
 import { Product } from "@/shared/types/product";
 import { calculateTicketPercentage } from "@/shared/utils";
+import { AppDispatch } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { getProductTicketDetails } from "@/redux/slices/ticket/ticket.slice";
 
 type ContestRightProp = {
   product: Product;
 };
 
 const ContestRight: React.FC<ContestRightProp> = ({ product }) => {
-  const { incrementHandle, decrementHandle, quantity } = useContext(AppContext);
+  const dispatch = useDispatch<AppDispatch>();
   const ticketPercentage = calculateTicketPercentage(
     product.totalTickets,
     product.ticketsSold,
   );
+
+  const handleBuyTicketClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    dispatch(
+      getProductTicketDetails({
+        productId: product.id,
+      }),
+    );
+  };
 
   return (
     <div className="contest-cart__right">
@@ -40,12 +51,13 @@ const ContestRight: React.FC<ContestRightProp> = ({ product }) => {
         </div>
         <p>Only {product.totalTickets - product.ticketsSold} remaining!</p>
       </div>
-      <div className="ticket-price">
-        <span className="amount">£{product.price}</span>
-        <small>Per ticket</small>
-      </div>
-      <div className="d-flex flex-wrap align-items-center mb-30">
-        <div className="select-quantity">
+
+      <div className="d-flex flex-wrap align-items-center tw-justify-between mb-30">
+        <div className="ticket-price">
+          <span className="amount">£{product.price}</span>
+          <small>Per ticket</small>
+        </div>
+        {/* <div className="select-quantity">
           <span className="caption">Quantity</span>
           <div className="quantity">
             <input
@@ -71,11 +83,14 @@ const ContestRight: React.FC<ContestRightProp> = ({ product }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="mt-sm-0 mt-3">
-          <Link href="/lottery-details" className="cmn-btn style--three">
+          <div
+            onClick={handleBuyTicketClick}
+            className="cmn-btn style--three tw-cursor-pointer"
+          >
             buy tickets
-          </Link>
+          </div>
         </div>
       </div>
       <ul className="social-links align-items-center">

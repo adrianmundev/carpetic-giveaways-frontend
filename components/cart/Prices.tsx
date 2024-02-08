@@ -1,30 +1,34 @@
 import Image from "next/image";
 import payment from "/public/images/elements/payment.png";
 
-const Prices = () => {
+type PricesProps = {
+  totalPrice: number;
+};
+
+const Prices = ({ totalPrice }: PricesProps) => {
   return (
-    <div className="col-lg-4 mt-lg-0 mt-4">
+    <div className="col-12 mt-lg-0 mt-4">
       <div className="checkout-wrapper">
         <div className="checkout-wrapper__header">
-          <h3>Your tickets:</h3>
+          <h3>Total Price:</h3>
         </div>
         <div className="checkout-wrapper__body">
           <ul className="price">
-            <li>
+            {/* <li>
               <div className="left">
-                <h4 className="caption">Ticket Price</h4>
+                <h4 className="caption">Total Items</h4>
                 <span>(8 tickets X $ 4.99)</span>
               </div>
               <div className="right">
                 <span className="price">$39.92</span>
               </div>
-            </li>
+            </li> */}
             <li>
               <div className="left">
                 <h4 className="caption">Total</h4>
               </div>
               <div className="right">
-                <span className="price">$39.92</span>
+                <span className="price">£{totalPrice}</span>
               </div>
             </li>
           </ul>

@@ -7,8 +7,10 @@ import tag from "/public/images/icon/btn/tag.png";
 import logo from "/public/images/logo.svg";
 import { userSelector } from "@/redux/slices/auth/selectors";
 import { useSelector } from "react-redux";
+import { totalQuantitySelector } from "@/redux/slices/basket/selectors";
 
 const Header = () => {
+  const totalQuantity = useSelector(totalQuantitySelector);
   const [open, setOpen] = useState("");
   const [windowHeight, setWindowHeight] = useState(0);
   const [show, setShow] = useState(false);
@@ -66,7 +68,9 @@ const Header = () => {
                   <span className="total__amount">0.00</span>
                   <Link href="/cart" className="amount__btn">
                     <i className="las la-shopping-basket"></i>
-                    <span className="cart__num">{cartData.length}</span>
+                    {totalQuantity ? (
+                      <span className="cart__num">{totalQuantity}</span>
+                    ) : null}
                   </Link>
                 </div>
                 {!user && (

@@ -57,8 +57,10 @@ const Modal: React.FC<ModalProps> = ({
       >
         <div
           className={cn(
-            "tw-relative tw-max-w-96 tw-w-full tw-my-6 tw-mx-auto tw-h-auto",
-            contentContainerClass,
+            "tw-relative tw-my-6 tw-mx-auto tw-w-full",
+            contentContainerClass
+              ? contentContainerClass
+              : "tw-max-w-96 tw-h-auto",
           )}
         >
           {/*content*/}
