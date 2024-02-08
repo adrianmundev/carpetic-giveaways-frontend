@@ -35,7 +35,8 @@ let localBasketItems = [];
 let totalPrice = 0;
 let totalQuantity = 0;
 if (typeof window !== "undefined") {
-  localBasketItems = parseObject(window.localStorage.getItem("basket")) || [];
+  localBasketItems =
+    parseObject(window.localStorage.getItem(LOCAL_BASKET_KEY)) || [];
 
   if (localBasketItems.length) {
     totalPrice = calculateTotalPrice(localBasketItems);
