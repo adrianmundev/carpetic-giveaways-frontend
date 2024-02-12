@@ -6,6 +6,7 @@ import { calculateTicketPercentage } from "@/shared/utils";
 import { AppDispatch } from "@/redux/store";
 import { useDispatch } from "react-redux";
 import { getProductTicketDetails } from "@/redux/slices/ticket/ticket.slice";
+import Image from "next/image";
 
 type ContestRightProp = {
   product: Product;
@@ -31,9 +32,24 @@ const ContestRight: React.FC<ContestRightProp> = ({ product }) => {
     <div className="contest-cart__right">
       <h4 className="subtitle">Enter now for a chance to win</h4>
       <h3 className="contest-name">{product.name}</h3>
-      <p className="tw-mb-4">
-        This competition has a maximum of {product.totalTickets} entries.
-      </p>
+      <div className="tw-flex tw-items-center tw-gap-3">
+        <div className="tw-relative tw-h-5 tw-w-5">
+          <Image src="/images/user/symbol.svg" alt="User Icon" fill />
+        </div>
+        <p className="tw-translate-y-1">
+          Max {product.maxTicketsPerPerson} per person. Buy{" "}
+          <span className="tw-text-SelectiveYellow">
+            {product.maxTicketsPerPerson}
+          </span>{" "}
+          more tickets
+        </p>
+      </div>
+      <div className="tw-flex tw-items-center tw-gap-3 mb-4">
+        <div className="tw-relative tw-h-5 tw-w-5">
+          <Image src="/images/entries.svg" alt="User Icon" fill />
+        </div>
+        <p className="tw-translate-y-1">{product.totalTickets} entries</p>
+      </div>
       {/* <div className="contest-num">
         Contest no: <span>B2T</span>
       </div> */}

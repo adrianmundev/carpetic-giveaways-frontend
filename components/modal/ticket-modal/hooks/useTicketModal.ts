@@ -2,6 +2,7 @@ import {
   productIdSelector,
   quantitySelector,
   questionAnswerIdSelector,
+  questionIdSelector,
   ticketOpenModalSelector,
 } from "@/redux/slices/ticket/selectors";
 import {
@@ -16,7 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import useSWR from "swr";
 import dayjs from "dayjs";
 import { productService } from "@/shared/services/product.service";
-import { setBasketItem } from "@/redux/slices/basket/basket.slice";
+import {
+  setBasketItem,
+  updateBasketItem,
+} from "@/redux/slices/basket/basket.slice";
+import { basketItemsSelector } from "@/redux/slices/basket/selectors";
 
 export const useTicketModal = () => {
   const [quantityInput, setQuantityInput] = useState("1");
@@ -30,6 +35,8 @@ export const useTicketModal = () => {
   const quantity = useSelector(quantitySelector);
   const productId = useSelector(productIdSelector);
   const questionAnswerId = useSelector(questionAnswerIdSelector);
+  const questionId = useSelector(questionIdSelector);
+  const basketItems = useSelector(basketItemsSelector);
   const { data, isLoading: ticketLoading } = useSWR(
     productId ? `/product/ticket/details/${productId}` : null,
     ticketService.getProductTicketDetails,
@@ -83,16 +90,38 @@ export const useTicketModal = () => {
 
   const handleAddToBasketClick = () => {
     handleCloseModal();
-    dispatch(
-      setBasketItem({
-        calculatedPrice: parseFloat(calculatedPrice),
-        productId: product.id,
-        productName: product.name,
-        productThumbnail: product.thumbnailUrl,
-        quantity: quantity,
-        productPrice: product.price,
-      }),
+    const newBasketItem = {
+      questionAnswerId: questionAnswerId,
+      questionId: questionId,
+      calculatedPrice: parseFloat(calculatedPrice),
+      productId: product.id,
+      productName: product.name,
+      productThumbnail: product.thumbnailUrl,
+      quantity: quantity,
+      productPrice: product.price,
+    };
+    const basketItemIndex = basketItems.findIndex(
+      (item) => item.productId === product.id,
     );
+    if (basketItemIndex !== -1) {
+      const basketItem = basketItems[basketItemIndex];
+      const newUpdateBasketItem = { ...basketItem };
+      const newQuantity = basketItem.quantity + newBasketItem.quantity;
+      if (newQuantity > product.maxTicketsPerPerson) {
+        newUpdateBasketItem.quantity = product.maxTicketsPerPerson;
+        newUpdateBasketItem.calculatedPrice = parseFloat(
+          (
+            newUpdateBasketItem.quantity * newUpdateBasketItem.productPrice
+          ).toFixed(2),
+        );
+      } else {
+        newUpdateBasketItem.quantity = newQuantity;
+        newUpdateBasketItem.calculatedPrice += parseFloat(calculatedPrice);
+      }
+      dispatch(updateBasketItem(newUpdateBasketItem));
+    } else {
+      dispatch(setBasketItem(newBasketItem));
+    }
   };
 
   const handleIncrementQuantity = (valueToAdd: number) => () => {

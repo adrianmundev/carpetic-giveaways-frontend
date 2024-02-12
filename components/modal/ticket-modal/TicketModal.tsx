@@ -125,7 +125,7 @@ export const TicketModal = () => {
             value={questionAnswerId}
             defaultValue=""
             onChange={handleQuestionChange}
-            className="tw-border-black tw-text-base tw-text-black tw-bg-white"
+            className="tw-border-black tw-text-base tw-text-black tw-bg-white tw-appearance-auto tw-px-3"
           >
             <option className="tw-bg-white" value="">
               Select answer

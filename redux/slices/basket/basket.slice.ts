@@ -8,6 +8,8 @@ export type BasketItem = {
   productPrice: number;
   calculatedPrice: number;
   productId: string;
+  questionId: string;
+  questionAnswerId: string;
 };
 
 export interface IBasketState {
@@ -56,6 +58,22 @@ export const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
+    updateBasketItem: (state, { payload }: { payload: BasketItem }) => {
+      const allItems = [...state.items];
+      state.newItem = payload;
+      const basketItemIndex = allItems.findIndex(
+        (item) => item.productId === payload.productId,
+      );
+      const basketItem = allItems[basketItemIndex];
+      basketItem.quantity = payload.quantity;
+      basketItem.calculatedPrice = payload.calculatedPrice;
+      allItems.splice(basketItemIndex, 1, basketItem);
+      state.items = allItems;
+      state.openBasketModal = true;
+      state.totalQuantity = calculateTotalQuantity(allItems);
+      state.totalPrice = calculateTotalPrice(allItems);
+      setLocalBasketItems(allItems);
+    },
     setBasketItem: (state, { payload }: { payload: BasketItem }) => {
       const allItems = [...state.items];
       state.newItem = payload;
@@ -93,4 +111,5 @@ export const {
   closeBasketModal,
   removeBasketItem,
   clearBasket,
+  updateBasketItem,
 } = basketSlice.actions;
